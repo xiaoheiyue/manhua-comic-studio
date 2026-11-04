@@ -1,0 +1,231 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "z_image_turbo_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    },
+    "_meta": {
+      "title": "Z-Image-Turbo UNet"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen_3_4b_fp8_mixed.safetensors",
+      "type": "lumina2",
+      "device": "default"
+    },
+    "_meta": {
+      "title": "Qwen3-4B 文本编码器"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "_meta": {
+      "title": "Z-Image VAE"
+    }
+  },
+  "4": {
+    "class_type": "ModelSamplingAuraFlow",
+    "inputs": {
+      "shift": 3,
+      "model": [
+        "1",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "采样算法 AuraFlow"
+    }
+  },
+  "5": {
+    "class_type": "ModelPatchLoader",
+    "inputs": {
+      "name": "Z-Image-Turbo-Fun-Controlnet-Union-2.1-lite-2601-8steps.safetensors"
+    },
+    "_meta": {
+      "title": "Z-Image ControlNet 模型补丁"
+    }
+  },
+  "6": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "pose_sheet.png"
+    },
+    "_meta": {
+      "title": "姿势骨架"
+    }
+  },
+  "7": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": 1536,
+      "height": 1536,
+      "crop": "center",
+      "image": [
+        "6",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "骨架缩放到总图尺寸"
+    }
+  },
+  "8": {
+    "class_type": "QwenImageDiffsynthControlnet",
+    "inputs": {
+      "model": [
+        "4",
+        0
+      ],
+      "model_patch": [
+        "5",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image": [
+        "7",
+        0
+      ],
+      "strength": 0.95
+    },
+    "_meta": {
+      "title": "Pose ControlNet"
+    }
+  },
+  "9": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": ""
+    },
+    "_meta": {
+      "title": "参考图1_画风"
+    }
+  },
+  "10": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": ""
+    },
+    "_meta": {
+      "title": "参考图2_角色主视图"
+    }
+  },
+  "11": {
+    "class_type": "TextEncodeZImageOmni",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "prompt": "",
+      "auto_resize_images": true,
+      "vae": [
+        "3",
+        0
+      ],
+      "image1": [
+        "9",
+        0
+      ],
+      "image2": [
+        "10",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Z-Image 参考条件（画风+角色）"
+    }
+  },
+  "12": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "低质量, 模糊, 变形, 多余手指, 多个人, 不同脸, 不同发型, 散发, 大小眼, 文字, 水印, 分格, 画框",
+      "clip": [
+        "2",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "负面提示词"
+    }
+  },
+  "13": {
+    "class_type": "EmptySD3LatentImage",
+    "inputs": {
+      "width": 1536,
+      "height": 1536,
+      "batch_size": 1
+    },
+    "_meta": {
+      "title": "空 Latent（姿态总图）"
+    }
+  },
+  "14": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": 12345,
+      "steps": 8,
+      "cfg": 1.4,
+      "sampler_name": "res_multistep",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "8",
+        0
+      ],
+      "positive": [
+        "11",
+        0
+      ],
+      "negative": [
+        "12",
+        0
+      ],
+      "latent_image": [
+        "13",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "K采样器 8步 cfg1.4"
+    }
+  },
+  "15": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "14",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "VAE 解码"
+    }
+  },
+  "16": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "manhua_character_pose",
+      "images": [
+        "15",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "保存姿态总图"
+    }
+  }
+}

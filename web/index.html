@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>漫画生成器</title>
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/logo.png">
+<link rel="stylesheet" href="/static/style.css?v=20261103p">
+<script src="/static/theme.js?v=20261103p"></script>
+</head>
+<body>
+<div class="bg-layer" id="bg-layer" aria-hidden="true">
+  <div class="bg-layer-img" id="bg-layer-img"></div>
+  <div class="bg-layer-overlay" id="bg-layer-overlay"></div>
+</div>
+<div class="app">
+
+  <!-- ================= 侧边导航 ================= -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">
+        <img src="/assets/logo.png" alt="漫画生成器" onerror="this.remove()">
+        <span class="brand-fallback">漫</span>
+      </div>
+      <div class="brand-text">
+        <div class="brand-title">漫画生成器</div>
+        <div class="brand-sub" id="brand-sub">本地出图：ComfyUI · 检测中…</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-label">工作流</div>
+      <button class="nav-item nav-workflow" data-stage="workflows" title="工作流">
+        <span class="nav-index">◈</span><span class="nav-text">工作流</span>
+      </button>
+
+      <div class="nav-label">创作流程</div>
+      <button class="nav-item active" data-stage="1" title="输入文本">
+        <span class="nav-index">1</span><span class="nav-text">输入文本</span>
+        <span class="nav-badge hidden" data-badge="1"></span>
+      </button>
+      <button class="nav-item" data-stage="refine" title="小说精修与连续故事板">
+        <span class="nav-index">2</span><span class="nav-text">小说精修与连续故事板</span>
+        <span class="nav-badge hidden" data-badge="refine"></span>
+      </button>
+      <button class="nav-item" data-stage="2" title="内容分析">
+        <span class="nav-index">3</span><span class="nav-text">内容分析</span>
+        <span class="nav-badge hidden" data-badge="2"></span>
+      </button>
+      <button class="nav-item" data-stage="3" title="角色预设与参考资产">
+        <span class="nav-index">4</span><span class="nav-text">角色预设与参考资产</span>
+        <span class="nav-badge hidden" data-badge="3"></span>
+      </button>
+      <button class="nav-item" data-stage="4" title="分镜拆解">
+        <span class="nav-index">5</span><span class="nav-text">分镜拆解</span>
+        <span class="nav-badge hidden" data-badge="4"></span>
+      </button>
+      <button class="nav-item" data-stage="5" title="25格分镜">
+        <span class="nav-index">6</span><span class="nav-text">25格分镜</span>
+        <span class="nav-badge hidden" data-badge="5"></span>
+      </button>
+              <button class="nav-item" data-stage="6" title="姿态图（可选）">
+        <span class="nav-index">7</span><span class="nav-text">姿态图（可选）</span>
+        <span class="nav-badge hidden" data-badge="6"></span>
+      </button>
+      <button class="nav-item" data-stage="7" title="出图与打包">
+        <span class="nav-index">8</span><span class="nav-text">出图与打包</span>
+        <span class="nav-badge hidden" data-badge="7"></span>
+      </button>
+
+      <div class="nav-label">创作工坊</div>
+      <button class="nav-item" data-stage="studio" title="非漫画创作">
+        <span class="nav-index">✦</span><span class="nav-text">非漫画创作</span>
+      </button>
+
+      <div class="nav-label">辅助</div>
+      <button class="nav-item" data-stage="logs" title="运行日志">
+        <span class="nav-index">·</span><span class="nav-text">运行日志</span>
+      </button>
+      <button class="nav-item" data-stage="projects" title="工程与产物">
+        <span class="nav-index">·</span><span class="nav-text">工程与产物</span>
+      </button>
+    </nav>
+
+    <div class="nav-scrollbar" id="nav-scrollbar" aria-hidden="true">
+      <div class="nav-scrollbar-thumb" id="nav-scrollbar-thumb"></div>
+    </div>
+
+    <div class="sidebar-foot">
+      <div class="dot-line"><span class="dot" id="dot-key"></span>
+        <span id="foot-key">图像服务：检查中</span></div>
+      <div class="dot-line"><span class="dot" id="dot-text"></span>
+        <span id="foot-text">文本模型：未检查</span></div>
+      <div class="dot-line"><span class="dot" id="dot-image"></span>
+        <span id="foot-image">工作流：未检查</span></div>
+    </div>
+  </aside>
+
+  <!-- ================= 主区域 ================= -->
+  <div class="main">
+    <header class="header">
+      <div>
+        <h1 id="header-title">输入文本</h1>
+        <div class="header-sub" id="header-sub">上传或粘贴小说，然后开始分析</div>
+      </div>
+      <div class="header-spacer"></div>
+      <span class="pill" id="pill-chars">角色 <b>0</b></span>
+      <span class="pill" id="pill-scenes">场景 <b>0</b></span>
+      <span class="pill" id="pill-shots">分镜 <b>0</b></span>
+      <span class="pill" id="pill-done">完成 <b>0/0</b></span>
+      <select class="select" id="model-family" title="当前漫画出图模型" style="width:190px">
+        <option value="zimage">Z-Image-Turbo</option>
+        <option value="qwen">Qwen-Image-2.1</option>
+      </select>
+      <button class="btn btn-sm btn-theme" id="btn-theme" title="主题配色与界面背景">
+        <span class="btn-theme-dot"></span><span class="btn-theme-label">主题</span>
+      </button>
+      <button class="btn btn-sm" id="btn-settings">⚙ 设置</button>
+      <button class="btn btn-sm" id="btn-refresh-service">检查服务</button>
+    </header>
+
+    <!-- 后台任务条 -->
+    <div class="jobbar" id="jobbar">
+      <span class="jobbar-title" id="jobbar-title">任务</span>
+      <span class="jobbar-msg" id="jobbar-msg"></span>
+      <div class="progress"><div class="progress-bar" id="jobbar-bar"></div></div>
+      <button class="btn btn-sm btn-danger" id="jobbar-cancel">取消</button>
+    </div>
+
+    <div class="content">
+
+      <!-- ============ 阶段 1：输入文本 ============ -->
+      <section class="stage-panel active" data-panel="1">
+        <div class="notice notice-info mb-16">
+          <span>①</span>
+          <div>上传小说文件或直接粘贴文本，也可以点「加载示例」快速体验。
+            先点击「开始精修」做情节减法与 25 格连续故事板，再进入内容分析。</div>
+        </div>
+        <div class="card project-overview-card mb-16" id="project-overview"></div>
+
+        <div class="grid" style="grid-template-columns: minmax(0,1.6fr) minmax(300px,.75fr)">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title">小说文本</h2>
+                <p class="card-desc">支持 txt / md 等纯文本，自动识别编码</p>
+              </div>
+              <div class="spacer"></div>
+              <span class="tag" id="text-length">0 字</span>
+            </div>
+            <div class="card-body tight">
+              <textarea class="textarea" id="novel-text" rows="22"
+                placeholder="请粘贴小说文本…"></textarea>
+              <div id="text-hint" class="small muted text-hint"></div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card">
+              <div class="card-head tight"><h2 class="card-title">文件上传</h2></div>
+              <div class="card-body tight">
+                <div id="drop-zone" class="empty" style="cursor:pointer;padding:22px 16px">
+                  <div class="empty-icon">⬆</div>
+                  <div class="empty-title">拖拽文件到此处</div>
+                  <div class="empty-desc">或点击选择文件</div>
+                </div>
+                <input type="file" id="file-input" class="hidden"
+                       accept=".txt,.md,.text,.log,.csv,.json,.xml,.html,.htm">
+                <div id="file-info" class="small muted" style="margin-top:10px"></div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head tight"><h2 class="card-title">作品信息</h2></div>
+              <div class="card-body tight col">
+                <div class="field">
+                  <label class="field-label" for="title-input">作品名称</label>
+                  <input class="input" id="title-input" value="未命名作品">
+                </div>
+                <button class="btn" id="btn-sample">加载示例小说</button>
+                <button class="btn" id="btn-clear">清空文本</button>
+                <button class="btn" id="btn-new-project" title="保留当前工程，另开一个空白工程">＋ 新建工程</button>
+                <button class="btn btn-primary btn-lg btn-block" id="btn-analyze">
+                  开始精修 →</button>
+                <button class="btn btn-primary btn-lg btn-block" id="btn-auto">
+                  一键全流程 →</button>
+                <p class="field-hint" style="margin:2px 0 0">
+                  自动完成分析、人设、分镜、出图、自检返修与导出；中途可随时停下来改设定再继续。
+                </p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head tight"><h2 class="card-title">当前配置</h2></div>
+              <div class="card-body tight">
+                <dl class="kv" id="config-kv"></dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 阶段 2：内容分析 ============ -->
+      <section class="stage-panel" data-panel="refine">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">小说精修与连续故事板</h2>
+              <p class="card-desc">先做情节减法：一句话核心戏剧任务 → 8–12 个视觉锚点 → 25 格连续叙事。这里只产出文本，不画图；确认后再进入内容分析和后续分镜。</p>
+            </div>
+            <div class="spacer"></div>
+            <button class="btn btn-sm" id="btn-refine-refresh">刷新</button>
+            <button class="btn btn-sm" id="btn-refine-edit">编辑</button>
+            <button class="btn btn-sm btn-primary hidden" id="btn-refine-save">保存修改</button>
+            <button class="btn btn-sm hidden" id="btn-refine-cancel">取消</button>
+            <button class="btn btn-sm btn-danger" id="btn-refine-delete">删除精修</button>
+            <button class="btn btn-sm btn-primary" id="btn-refine-start">精修小说 / 生成连续故事板</button>
+          </div>
+          <div class="card-body">
+            <div class="stage-snapshot" id="refine-snapshot"></div>
+            <div class="row tight" style="margin-bottom:10px">
+              <span class="tag tag-primary" id="refine-status">待生成</span>
+              <span class="small muted" id="refine-note"></span>
+            </div>
+            <div class="field"><label class="field-label">核心戏剧任务</label>
+              <div class="small" id="refine-core" style="line-height:1.8">尚未生成</div></div>
+            <div class="field"><label class="field-label">结构化摘要
+              <span class="field-hint">主角 / 目标 / 阻碍 / 转折 / 落点 / 基调 / 母题</span></label>
+              <div class="refine-digest" id="refine-digest"></div>
+              <div class="small muted refine-meta" id="refine-meta"></div></div>
+            <div class="field"><label class="field-label">视觉锚点</label>
+              <div id="refine-anchor-cards" class="refine-anchor-grid"></div>
+              <div class="small" id="refine-anchors" style="line-height:1.8">尚未生成</div></div>
+            <div class="field"><label class="field-label">25 格连续故事板</label>
+              <div id="refine-cell-grid" class="refine-cell-grid"></div>
+              <pre class="refine-raw hidden" id="refine-raw"></pre>
+              <details class="refine-table-details">
+                <summary>表格视图</summary>
+                <div class="table-wrap" id="refine-cells" style="max-height:520px"></div>
+              </details>
+            </div>
+          </div>
+          <div class="card-foot">
+            <div class="spacer"></div>
+            <button class="btn btn-sm btn-primary" id="btn-next-refine">下一步：内容分析 →</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="stage-panel" data-panel="2">
+        <div class="prompt-bar">
+          <span class="prompt-bar-icon">✎</span>
+          <div class="prompt-bar-main">
+            <b>本步骤提示词与规则</b><span>小说整体分析 · 分段合并 · 绘制风格推荐</span>
+          </div>
+          <div class="spacer"></div>
+          <span class="prompt-bar-state" data-prompt-state="2"></span>
+          <button class="btn btn-sm btn-prompt" data-prompt-open="2">编辑提示词</button>
+          <button class="btn btn-sm btn-resource" data-resource-open="2">规则 / 工具</button>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">故事理解</h2>
+              <p class="card-desc">梗概、情节线与画风推荐，可直接编辑后保存</p>
+            </div>
+            <div class="spacer"></div>
+            <button class="btn btn-sm" id="btn-reanalyze">重新分析</button>
+            <button class="btn btn-sm btn-primary" id="btn-save-analysis">保存修改</button>
+          </div>
+          <div class="card-body">
+            <div class="grid grid-2">
+              <div class="field">
+                <label class="field-label">故事梗概</label>
+                <textarea class="textarea" id="summary-input" rows="5"></textarea>
+              </div>
+              <div class="field">
+                <label class="field-label">情节线 / 关键节点</label>
+                <textarea class="textarea" id="plotline-input" rows="5"></textarea>
+              </div>
+            </div>
+            <div class="grid grid-2" style="margin-top:16px">
+              <div class="field">
+                <label class="field-label">内置画风（兜底）
+                  <span class="field-hint">未用风格库时兜底；按题材选（日系 / 国风 / 欧美 / 欧洲 / 独立…）</span></label>
+                <select class="select" id="style-select"></select>
+              </div>
+              <div class="field">
+                <label class="field-label">风格细化建议</label>
+                <input class="input" id="style-detail-input">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="style-card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">绘制风格（手绘风格库）</h2>
+              <p class="card-desc">
+                365 种编号化画风 × 36 种主题色；分析后按故事气质自动推荐，
+                也可手动挑选。角色图、每一格、每一页共用同一套风格。
+              </p>
+            </div>
+            <div class="spacer"></div>
+            <button class="btn btn-sm" id="btn-style-auto"
+              title="按当前故事梗概/情节/角色，让模型在候选画风里重新挑一套">
+              ✨ 自动推荐</button>
+            <button class="btn btn-sm" id="btn-style-browse">浏览全部风格</button>
+          </div>
+          <div class="card-body">
+            <div class="style-current" id="style-current">
+              <div class="style-current-thumb" id="style-current-thumb"></div>
+              <div class="style-current-info">
+                <div class="style-current-name" id="style-current-name">尚未选择风格</div>
+                <div class="small muted" id="style-current-ref"></div>
+                <div class="style-current-traits" id="style-current-traits"></div>
+                <div class="style-current-grade small" id="style-current-grade"></div>
+                <div class="row tight" id="style-current-colors"></div>
+              </div>
+            </div>
+            <div class="grid grid-2" style="margin-top:14px">
+              <div class="field">
+                <label class="field-label">绘制风格
+                  <span class="field-hint">空 = 用内置画风预设（47 种）</span></label>
+                <select class="select" id="style-id-select"></select>
+              </div>
+              <div class="field">
+                <label class="field-label">主题色
+                  <span class="field-hint">主色 + 点缀色（可不选）</span></label>
+                <div class="row tight">
+                  <select class="select" id="style-color-select" style="flex:1"></select>
+                  <select class="select" id="style-color2-select" style="flex:1"></select>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-2" style="margin-top:10px">
+              <div class="field">
+                <label class="field-label">阶调
+                  <span class="field-hint">手绘风格库 T-01…T-40，影响明暗/反差/氛围/光线</span></label>
+                <select class="select" id="style-tone-select"></select>
+              </div>
+              <div class="field">
+                <label class="field-label">触发词
+                  <span class="field-hint">媒介 + 漫画特征 + 阶调，可手改</span></label>
+                <input class="input" id="style-trigger-input" maxlength="160"
+                       placeholder="如：电影级写实摄影；低饱和、暗调；暗沉调">
+              </div>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <button class="btn btn-sm btn-primary" id="btn-style-apply">应用风格</button>
+              <button class="btn btn-sm btn-danger" id="btn-style-apply-clear"
+                title="应用风格并清空分镜图/页图/角色图；小说、人设、分镜文本都保留">应用风格并清空旧图</button>
+              <button class="btn btn-sm" id="btn-style-clear">用回内置画风</button>
+              <button class="btn btn-sm" id="btn-style-trigger-save">保存阶调/触发词</button>
+              <span class="small muted" id="style-hint"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">角色列表</h2>
+              <p class="card-desc">可直接编辑单元格；勾选「群众角色」单独归类</p>
+            </div>
+            <div class="spacer"></div>
+            <button class="btn btn-sm" id="btn-add-character">+ 新增角色</button>
+          </div>
+          <div class="card-body tight">
+            <div class="table-wrap" id="char-table-wrap"></div>
+          </div>
+          <div class="card-foot">
+            <span class="small muted" id="char-count">0 个角色</span>
+            <div class="spacer"></div>
+            <button class="btn btn-sm btn-primary" id="btn-next-3">下一步：角色预设与参考资产 →</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">场景列表</h2>
+              <p class="card-desc">识别出的主要场景与地点</p>
+            </div>
+            <div class="spacer"></div>
+            <button class="btn btn-sm" id="btn-add-scene">+ 新增场景</button>
+          </div>
+          <div class="card-body tight">
+            <div class="table-wrap" id="scene-table-wrap"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 阶段 3：主视图与姿态图 ============ -->
+      <section class="stage-panel" data-panel="3">
+        <div class="prompt-bar">
+          <span class="prompt-bar-icon">✎</span>
+          <div class="prompt-bar-main">
+            <b>本步骤提示词与规则</b><span>角色人设 · 撞车重写</span>
+          </div>
+          <div class="spacer"></div>
+          <span class="prompt-bar-state" data-prompt-state="3"></span>
+          <button class="btn btn-sm btn-prompt" data-prompt-open="3">编辑提示词</button>
+          <button class="btn btn-sm btn-resource" data-resource-open="3">规则 / 工具</button>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">角色人设、主视图、面部特写、三视图与俯视图</h2>
+              <p class="card-desc">主视图 + 面部特写是身份参考；侧面/背面单视图补角度；三视图与俯视图只做人工查看与结构补充</p>
+            </div>
+            <div class="spacer"></div>
+            <button class="btn btn-sm" id="btn-refresh-chars">刷新</button>
+            <button class="btn btn-sm btn-danger" id="btn-clear-char-images"
+              title="只清角色图片，保留人设文本">清空全部角色图</button>
+            <button class="btn btn-sm btn-primary" id="btn-all-char-images">
+              一键生成角色预设（主视图/面部特写/单视图/三视图/俯视）</button>
+          </div>
+          <div class="card-body tight">
+            <div class="char-grid" id="char-cards"></div>
+          </div>
+          <div class="card-foot">
+            <span class="small muted">主视图 + 面部特写锁身份；侧面/背面单视图锁角度；分镜按景别自动路由</span>
+            <div class="spacer"></div>
+            <button class="btn btn-sm btn-primary" id="btn-next-char">下一步：分镜拆解 →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 阶段 4：分镜拆解 ============ -->
+      <section class="stage-panel" data-panel="4">
+        <div class="prompt-bar">
+          <span class="prompt-bar-icon">✎</span>
+          <div class="prompt-bar-main">
+            <b>本步骤提示词与规则</b><span>分镜拆解 / 合并 / 导演 / 旁白 / 分页</span>
+          </div>
+          <div class="spacer"></div>
+          <span class="prompt-bar-state" data-prompt-state="4"></span>
+          <button class="btn btn-sm btn-prompt" data-prompt-open="4">编辑提示词</button>
+          <button class="btn btn-sm btn-resource" data-resource-open="4">规则 / 工具</button>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">分镜形态与版式</h2>
+              <p class="card-desc">
+                原条漫＝一格一张图；分镜页＝2~6 格按 SB-* 版式拼成一页；
+                混排＝按内容自动分流。版式由每格的 beat / 对白 / 动作 / 场景连续性决定。
+              </p>
+            </div>
+            <div class="spacer"></div>
+            <select class="select" id="render-mode-select" style="width:150px"
+              title="切换后会用本地规则重新分页">
+              <option value="hybrid">混排（推荐）</option>
+              <option value="page">分镜页</option>
+              <option value="webtoon">原条漫</option>
+            </select>
+            <button class="btn btn-sm" id="btn-plan-layout"
+              title="Text model 参与分页 + 选版式；失败自动退回本地动态规划">
+              重新规划版式</button>
+            <button class="btn btn-sm btn-danger" id="btn-clear-shots"
+              title="清空所有分镜成品图/原图，保留分镜文本与页版式">清空分镜图</button>
+            <button class="btn btn-sm btn-danger" id="btn-clear-pages"
+              title="只清页图，保留分镜与版式">清空页图</button>
+            <button class="btn btn-sm" id="btn-compose-pages"
+              title="把已经出完图的格子按当前版式拼成页">合成页面</button>
+          </div>
+          <div class="card-body tight">
+            <div class="row tight" style="margin-bottom:8px">
+              <span class="tag tag-primary" id="layout-summary">尚无分页</span>
+              <span class="small muted" id="layout-note"></span>
+            </div>
+            <div class="page-grid" id="page-plan-grid"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">分镜脚本</h2>
+              <p class="card-desc">一格一个 beat；可编辑内容、调整顺序、合并或拆分。页与版式由上方「分镜形态与版式」自动规划。</p>
+            </div>
+            <div class="spacer"></div>
+            <button class="btn btn-sm" id="btn-decompose">开始拆解分镜</button>
+            <button class="btn btn-sm" id="btn-enhance-shots"
+              title="把台词从画面描述里归位、按对话拆格、修正镜头节奏/情绪/场景、补旁白">
+              整理分镜</button>
+            <button class="btn btn-sm" id="btn-director-shots"
+              title="让 DeepSeek 按快看条漫的镜头语言重拍：补机位/构图/光线/画幅，剔除电话画外音误入画面的人物">
+              导演优化</button>
+            <button class="btn btn-sm" id="btn-add-shot">+ 新增一格</button>
+            <button class="btn btn-sm btn-primary" id="btn-save-shots">保存分镜</button>
+          </div>
+          <div class="card-body tight">
+            <div id="storyboard-issues" class="col hidden" style="margin-bottom:10px"></div>
+            <div class="table-wrap" id="shot-table-wrap" style="max-height:none"></div>
+          </div>
+          <div class="card-foot">
+            <span class="small muted" id="shot-count">0 格分镜</span>
+            <span class="tag tag-info" id="shot-dialogue-count">含对话 0 格</span>
+            <div class="spacer"></div>
+            <button class="btn btn-sm btn-primary" id="btn-next-5">下一步：25格分镜 →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 阶段 5：25格分镜 ============ -->
+      <section class="stage-panel" data-panel="5">
+        <div class="prompt-bar resource-bar">
+          <span class="prompt-bar-icon gear">⚙</span>
+          <div class="prompt-bar-main">
+            <b>本步骤规则与工具</b>
+            <span>分镜与镜头规则 · 物件格语义 · 风格与版式 · 版式数据</span>
+          </div>
+          <div class="spacer"></div>
+          <button class="btn btn-sm btn-resource" data-resource-open="5">查看 / 编辑</button>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">25 格分镜结果</h2>
+              <p class="card-desc">从关键镜头生成 5×5 场景分镜联系表：每格是人物/动作/场景/机位。Qwen T2I 直接按提示词/参考图出格；需要动作锁定时再上传自定义姿态。</p>
+            </div>
+            <div class="spacer"></div>
+            <button class="btn btn-sm" id="btn-refresh-grid25">刷新</button>
+            <button class="btn btn-sm btn-primary" id="btn-build-grid25">生成 25 格分镜</button>
+          </div>
+          <div class="card-body tight">
+            <div class="stage-snapshot" id="grid25-snapshot"></div>
+            <div class="row tight" style="margin-bottom:8px">
+              <span class="tag tag-primary" id="grid25-status">待生成</span>
+              <span class="small muted" id="grid25-note"></span>
+            </div>
+            <div id="grid25-box" class="shot-detail-image" style="min-height:280px">
+              <div class="empty" style="border:none"><div class="empty-icon">▦</div>
+                <div class="empty-title">尚未生成 25 格分镜</div>
+                <div class="empty-desc">先在第 4 步拆解分镜并出图，再回到这里生成 5×5 联系表</div></div>
+            </div>
+            <div id="grid25-cells" class="grid25-cells"></div>
+          </div>
+          <div class="card-foot">
+            <div class="spacer"></div>
+            <button class="btn btn-sm btn-primary" id="btn-next-6">下一步：姿态图（可选） →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 阶段 6：姿态图 ============ -->
+      <section class="stage-panel" data-panel="6">
+        <div class="prompt-bar resource-bar">
+          <span class="prompt-bar-icon gear">⚙</span>
+          <div class="prompt-bar-main">
+            <b>本步骤规则与工具</b>
+            <span>角色预设资产 · 参考图路由 · 一致性抽检</span>
+          </div>
+          <div class="spacer"></div>
+          <button class="btn btn-sm btn-resource" data-resource-open="6">查看 / 编辑</button>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">姿态图（可选）</h2>
+              <p class="card-desc">Qwen T2I 下自动姿态已停用，最终出图按提示词/参考图构图；需要精确动作时，在格子上传自定义姿态。Z-Image 仍可用自动骨架。</p>
+            </div>
+            <div class="spacer"></div>
+            <button class="btn btn-sm" id="btn-refresh-poses">刷新</button>
+            <button class="btn btn-sm btn-primary" id="btn-build-poses">重新生成关键镜头姿态（清空旧）</button>
+          </div>
+          <div class="card-body tight">
+            <div class="stage-snapshot" id="pose-snapshot"></div>
+            <div class="row tight" style="margin-bottom:8px">
+              <span class="tag tag-primary" id="pose-status">待生成</span>
+              <span class="small muted" id="pose-note"></span>
+              <span class="small muted" id="pose-stats"></span>
+            </div>
+            <div class="shot-grid" id="pose-grid"></div>
+          </div>
+          <div class="card-foot">
+            <div class="spacer"></div>
+            <button class="btn btn-sm btn-primary" id="btn-next-7">下一步：出图与打包 →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 阶段 7：出图与打包 ============ -->
+      <section class="stage-panel" data-panel="7">
+        <div class="prompt-bar">
+          <span class="prompt-bar-icon">✎</span>
+          <div class="prompt-bar-main">
+            <b>本步骤提示词与规则</b><span>分镜出图 / 气泡指令 / 返修规则</span>
+          </div>
+          <div class="spacer"></div>
+          <span class="prompt-bar-state" data-prompt-state="7"></span>
+          <button class="btn btn-sm btn-prompt" data-prompt-open="7">编辑提示词</button>
+          <button class="btn btn-sm btn-resource" data-resource-open="7">规则 / 工具</button>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">批量出图设置</h2>
+              <p class="card-desc">按分镜顺序逐张生成；分格页模式下每格画幅由版式决定，
+                下方「画幅」只对原条漫生效。生成过程中可随时暂停、跳过或单张重做。</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <label class="checkbox"><input type="checkbox" id="opt-bubbles" checked>
+                <span>生成对话气泡</span></label>
+              <div class="field" style="min-width:140px">
+                <select class="select" id="opt-bubble-position">
+                  <option value="auto">气泡位置：自动</option>
+                  <option value="bottom">气泡位置：下方</option>
+                  <option value="top">气泡位置：上方</option>
+                </select>
+              </div>
+              <div class="field" style="min-width:150px">
+                <select class="select" id="opt-size"></select>
+              </div>
+              <label class="checkbox"><input type="checkbox" id="opt-retry-failed">
+                <span>只重试失败的格子</span></label>
+              <label class="checkbox"><input type="checkbox" id="opt-auto-repair" checked>
+                <span title="每格生成后检查白边/文字溢出/多余气泡/全黑等，低于阈值自动重画，保留最高分的一版">自检 + 自动返修</span></label>
+              <label class="checkbox"><input type="checkbox" id="opt-auto-pose" checked>
+                <span title="Qwen T2I 下不挂自动姿态；Z-Image 或上传自定义姿态时生效">自动姿态引导（可选）</span></label>
+              <label class="checkbox"><input type="checkbox" id="opt-force">
+                <span title="整理过分镜之后用它整章重绘，否则已完成的格子会被跳过">重绘全部（含已完成）</span></label>
+              <div class="spacer"></div>
+              <button class="btn btn-danger" id="btn-clear-all-images"
+                title="只清所有图片，保留小说、人设、分镜文本与版式">清空全部图片</button>
+              <button class="btn btn-primary" id="btn-generate">开始批量生成</button>
+              <button class="btn" id="btn-pause">暂停</button>
+              <button class="btn" id="btn-resume">继续</button>
+              <button class="btn btn-danger" id="btn-cancel">取消生成</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid" style="grid-template-columns: minmax(0,1.25fr) minmax(300px,.75fr)">
+          <div class="card">
+            <div class="card-head tight">
+              <h2 class="card-title">分镜预览</h2>
+              <div class="spacer"></div>
+              <span class="tag" id="preview-label">未选择</span>
+            </div>
+            <div class="card-body tight">
+              <div class="shot-detail-image" id="preview-box">
+                <div class="empty" style="border:none;border-radius:0">
+                  <div class="empty-icon">🖼</div>
+                  <div class="empty-title">暂无预览</div>
+                  <div class="empty-desc">点击下方缩略图查看，或先生成图像</div>
+                </div>
+              </div>
+            </div>
+            <div class="card-foot">
+              <button class="btn btn-sm btn-primary" id="btn-regen-single">重新生成这一格</button>
+              <button class="btn btn-sm" id="btn-edit-bubble">编辑对话气泡</button>
+              <label class="btn btn-sm" title="支持真人全身照或黑底彩色骨架图">
+                上传本格姿态
+                <input type="file" accept="image/*" id="shot-pose-file" hidden>
+              </label>
+              <button class="btn btn-sm" id="btn-clear-shot-pose">清除姿态</button>
+              <span class="small muted" id="shot-pose-label"></span>
+              <label class="checkbox"><input type="checkbox" id="opt-skip">
+                <span>标记跳过</span></label>
+              <div class="spacer"></div>
+              <button class="btn btn-sm" id="btn-download-shot">下载图片</button>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card">
+              <div class="card-head tight">
+                <h2 class="card-title">生成进度</h2>
+              </div>
+              <div class="card-body tight col">
+                <div class="progress"><div class="progress-bar" id="gen-bar"></div></div>
+                <div class="small muted" id="gen-msg">就绪</div>
+                <div class="row tight">
+                  <span class="tag tag-success" id="stat-done">已完成 0</span>
+                  <span class="tag tag-danger" id="stat-failed">失败 0</span>
+                  <span class="tag" id="stat-pending">待生成 0</span>
+                  <span class="tag tag-warn" id="stat-skip">跳过 0</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head tight"><h2 class="card-title">导出与打包</h2></div>
+              <div class="card-body tight col">
+                <div class="field">
+                  <label class="field-label">输出文件夹名称</label>
+                  <input class="input" id="output-name">
+                  <span class="field-hint">重名时自动追加序号</span>
+                </div>
+                <label class="checkbox"><input type="checkbox" id="opt-reader" checked>
+                  <span>生成漫画阅读文件（条漫长图 + PDF）</span></label>
+                <label class="checkbox"><input type="checkbox" id="opt-zip" checked>
+                  <span>打包为压缩包</span></label>
+                <button class="btn btn-primary btn-block" id="btn-export">导出并打包</button>
+                <button class="btn btn-block" id="btn-rebuild-strip"
+                  title="不重新导出其它产物，只把当前分镜成品按顺序无缝拼成条漫长图">
+                  只重新拼条漫长图</button>
+                <div class="small muted" id="export-msg"></div>
+                <div id="export-result" class="col hidden"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">分格页</h2>
+              <p class="card-desc">按版式拼好的漫画页；进入导出时会作为条漫/PDF 的图块</p>
+            </div>
+            <div class="spacer"></div>
+            <button class="btn btn-sm" id="btn-page-compose-all">重新合成全部页面</button>
+          </div>
+          <div class="card-body tight">
+            <div class="page-grid" id="page-grid"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">分镜缩略图</h2>
+              <p class="card-desc">点击任意一格查看大图与详情</p>
+            </div>
+            <div class="spacer"></div>
+            <select class="select" id="filter-status" style="width:150px">
+              <option value="all">全部状态</option>
+              <option value="已完成">仅已完成</option>
+              <option value="待生成">仅待生成</option>
+              <option value="失败">仅失败</option>
+              <option value="跳过">仅跳过</option>
+            </select>
+          </div>
+          <div class="card-body tight">
+            <div class="shot-grid" id="shot-grid"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 创作工坊 ============ -->
+      <section class="stage-panel" data-panel="studio">
+        <div class="notice notice-info mb-16">
+          <span>✦</span>
+          <div>这里不做漫画。用 handraw-style 的 365 种画风、167 种版式和 36 种主题色，
+            生成表情包、海报、社媒图文、信息图、插画、IP 设定、电商图。
+            信息图 / 社媒图文会先用文本模型做“语义编译”，再出图；
+            中文标题和节点标签默认由程序叠加，避免模型写错字。</div>
+        </div>
+        <div class="grid" style="grid-template-columns: minmax(0,1.15fr) minmax(340px,.85fr)">
+          <div class="card">
+            <div class="card-head">
+              <div><h2 class="card-title">创作设置</h2>
+                <p class="card-desc">先选用途，再选风格和版式；主题写清楚你要表达什么</p></div>
+            </div>
+            <div class="card-body">
+              <div class="field"><label>用途</label>
+                <div class="studio-modes" id="studio-modes"></div>
+              </div>
+              <div class="field" id="studio-emoji-grid-wrap"><label>表情数量</label>
+                <select class="select" id="studio-emoji-grid">
+                  <option value="3">3×3（9 格）</option>
+                  <option value="4">4×4（16 格）</option>
+                </select>
+              </div>
+              <div class="field"><label>参考图类型</label>
+                <select class="select" id="studio-reference-mode">
+                  <option value="identity">保留原图：身份 / 构图优先（低去噪）</option>
+                  <option value="chibi">重绘：真人 / 3D → Q 版母本</option>
+                  <option value="style">只参考画风：不锁人物，重画一张</option>
+                </select>
+              </div>
+              <div class="field"><label>随机种子</label>
+                <input class="input" id="studio-seed" value="888001" placeholder="固定值，同一参考图结果稳定">
+                <label class="checkbox" style="margin-top:4px"><input type="checkbox" id="studio-random-seed">
+                  <span>每次随机（关闭=固定，结果可复现）</span></label>
+              </div>
+              <div class="field" id="studio-emoji-text-wrap"><label>文字 / 特效</label>
+                <select class="select" id="studio-emoji-text-mode">
+                  <option value="model">随机短句 + 程序叠加（推荐，文字清晰）</option>
+                  <option value="overlay">指定文字 + 程序叠加（按你填的写）</option>
+                  <option value="none">不要文字</option>
+                </select>
+                <input class="input" id="studio-emoji-texts" value=""
+                  placeholder="留空 = 模型自己写；也可填：掐脸,好的,骄傲,溜了,超凶,什么事,先睡了,冻">
+                <div class="small muted">留空 = 每格从短句池随机挑一句；填了则按格顺序写这些词。文字由程序叠加，避免模型写中文糊字。</div>
+              </div>
+              <div class="field"><label>主题 / 内容</label>
+                <textarea class="textarea" id="studio-topic" rows="3"
+                  placeholder="例：秋分节气海报；一只戴红围巾的橘猫表情包；新手手冲咖啡步骤信息图"></textarea>
+              </div>
+              <div class="field">
+                <label class="checkbox"><input type="checkbox" id="studio-rewrite" checked>
+                  <span>先用 LLM 做语义编译（推荐：中文长主题 → 观察式视觉描述；信息图自动拆成底图 + 程序节点）</span></label>
+                <div class="row" style="gap:8px;align-items:center;margin-top:6px">
+                  <button class="btn btn-xs" id="studio-preview-prompt">预览改写</button>
+                  <span class="small muted" id="studio-rewrite-msg"></span>
+                </div>
+                <pre class="studio-prompt-preview hidden" id="studio-prompt-preview"></pre>
+              </div>
+              <div class="grid grid-2">
+                <div class="field"><label>主标题（可选，程序叠加）</label>
+                  <input class="input" id="studio-title" placeholder="例：秋分"></div>
+                <div class="field"><label>副标题（可选）</label>
+                  <input class="input" id="studio-subtitle" placeholder="例：昼夜均，寒暑平"></div>
+              </div>
+              <div class="field"><label>参考图（可选）</label>
+                <div class="row" style="gap:8px;align-items:center">
+                  <label class="btn btn-sm">上传参考图
+                    <input type="file" id="studio-ref-file" accept="image/*" hidden>
+                  </label>
+                  <button class="btn btn-sm" id="studio-ref-clear">清除</button>
+                  <span class="small muted">表情包/海报可上传角色或产品图；上传后自动去背景，再保留主体重画，不是直接复制</span>
+                  <span class="small" id="studio-ref-status"></span>
+                </div>
+                <div class="small muted" style="margin-top:4px">更换参考图会清空旧「主题 / 表情文字」，避免上一张图的描述残留。</div>
+                <img id="studio-ref-preview" class="studio-ref-preview hidden" alt="参考图">
+              </div>
+              <div class="field"><label>画风</label>
+                <div class="row">
+                  <input class="input" id="studio-style-search" placeholder="搜索风格名 / 编号 / 特征" style="flex:1">
+                  <select class="select" id="studio-style" style="width:260px"></select>
+                </div>
+                <div class="small muted" id="studio-style-hint">365 种 handraw 风格</div>
+                <div class="studio-preview-grid" id="studio-style-preview"></div>
+              </div>
+              <div class="grid grid-2">
+                <div class="field"><label>主色</label><select class="select" id="studio-color"></select>
+                  <span id="studio-color-preview" class="studio-color-preview"></span></div>
+                <div class="field"><label>点缀色</label><select class="select" id="studio-color2"></select></div>
+              </div>
+              <div class="grid grid-2">
+                <div class="field"><label>版式</label><select class="select" id="studio-layout"></select>
+                  <img id="studio-layout-preview" class="studio-layout-preview hidden" alt="版式预览"></div>
+                <div class="field"><label>参考图画风</label>
+                <label class="checkbox"><input type="checkbox" id="studio-use-style-ref">
+                  <span>把选中的画风图也作为参考（风格更明显，但可能改变人物）</span></label>
+              </div>
+              <div class="field"><label>文字处理</label>
+                  <select class="select" id="studio-overlay">
+                    <option value="true">程序叠加中文标题（推荐）</option>
+                    <option value="false">让模型直接写（可能错字）</option>
+                  </select></div>
+              </div>
+              <div class="row" style="gap:10px;align-items:center;margin-top:12px">
+                <button class="btn btn-primary" id="btn-studio-generate">生成</button>
+                <button class="btn btn-sm" id="btn-studio-refresh">刷新历史</button>
+                <span class="small muted" id="studio-msg"></span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h2 class="card-title">作品</h2>
+              <p class="card-desc">最近生成；点击可看大图</p></div></div>
+            <div class="card-body tight"><div class="studio-grid" id="studio-grid"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 日志 ============ -->
+      <section class="stage-panel" data-panel="workflows">
+        <div class="wf-shell">
+          <aside class="wf-side">
+            <div class="wf-side-head">
+              <div class="wf-side-title">
+                <h2>工作流</h2>
+                <span id="wf-count"></span>
+              </div>
+              <button class="btn btn-sm btn-primary" id="wf-add-btn">＋ 添加</button>
+            </div>
+            <input class="input wf-search" id="wf-search" placeholder="搜索名称 / 文件 / 节点…">
+            <div class="wf-list" id="wf-list"></div>
+            <div class="wf-side-foot">默认工作流不可删除；可以复制后修改，或从 ComfyUI 导入。</div>
+          </aside>
+
+          <section class="wf-main">
+            <div class="wf-topbar">
+              <div class="wf-head">
+                <div class="wf-title" id="wf-title">选择一个工作流</div>
+                <div class="wf-sub" id="wf-sub"></div>
+              </div>
+              <div class="spacer"></div>
+              <div class="wf-zoom">
+                <button class="btn btn-xs" id="wf-fit" title="适应画布">适应</button>
+                <button class="btn btn-xs" id="wf-zoom-out" title="缩小">−</button>
+                <span id="wf-zoom-label">100%</span>
+                <button class="btn btn-xs" id="wf-zoom-in" title="放大">＋</button>
+              </div>
+              <button class="btn btn-sm" id="wf-add-node">＋ 节点</button>
+              <button class="btn btn-sm btn-primary" id="wf-save">保存工作流</button>
+            </div>
+            <div class="wf-graph" id="wf-graph">
+              <div class="wf-empty" id="wf-empty">从左侧选择一个工作流开始查看 / 编辑</div>
+              <div class="wf-canvas" id="wf-canvas">
+                <svg class="wf-links" id="wf-links"></svg>
+                <div class="wf-nodes" id="wf-nodes"></div>
+              </div>
+              <div class="wf-hint">拖动节点移动 · 拖动端口连线 · 点击连线删除 · 滚轮缩放 · 空白处拖动平移</div>
+            </div>
+          </section>
+
+          <aside class="wf-inspector" id="wf-inspector">
+            <div class="wf-insp-title">应用设置</div>
+            <div class="wf-apply" id="wf-apply"></div>
+            <div class="wf-insp-title">工作流说明</div>
+            <textarea class="textarea wf-doc" id="wf-doc" rows="14" spellcheck="false"></textarea>
+            <div class="wf-insp-row">
+              <button class="btn btn-xs" id="wf-doc-save">保存说明</button>
+              <span class="small muted">Markdown</span>
+            </div>
+            <div class="wf-insp-title">工作流信息</div>
+            <div class="wf-info" id="wf-info"></div>
+            <div class="wf-insp-actions">
+              <button class="btn btn-xs" id="wf-duplicate">复制为新工作流</button>
+              <button class="btn btn-xs" id="wf-restore">恢复默认版本</button>
+              <button class="btn btn-xs btn-danger" id="wf-delete">删除工作流</button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="stage-panel" data-panel="logs">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">运行日志</h2>
+              <p class="card-desc">各阶段状态、模型调用与错误提示</p>
+            </div>
+            <div class="spacer"></div>
+            <button class="btn btn-sm" id="btn-log-refresh">刷新</button>
+          </div>
+          <div class="card-body tight">
+            <div class="log-view" id="log-view">（暂无日志）</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 工程与产物 ============ -->
+      <section class="stage-panel" data-panel="projects">
+        <div class="card project-overview-card mb-16" id="project-overview-projects"></div>
+        <div class="card mb-16">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title">各工程的步骤结果</h2>
+              <p class="card-desc">每个小说工程都已保存精修故事板、25 格联系表与姿态图；点卡片即可载入并跳到对应步骤查看</p>
+            </div>
+            <div class="spacer"></div>
+            <button class="btn btn-sm" id="btn-project-gallery-refresh">刷新</button>
+            <button class="btn btn-sm btn-primary" id="btn-new-project-2">＋ 新建工程</button>
+          </div>
+          <div class="card-body tight">
+            <div class="project-gallery" id="project-gallery"></div>
+          </div>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title">工程文件</h2>
+                <p class="card-desc">中间结果已自动落盘，可随时载入继续编辑</p>
+              </div>
+              <div class="spacer"></div>
+              <button class="btn btn-sm" id="btn-project-refresh">刷新</button>
+              <button class="btn btn-sm btn-primary" id="btn-project-save">保存当前工程</button>
+            </div>
+            <div class="card-body tight">
+              <div class="table-wrap" id="project-list" style="max-height:420px"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title">已导出的产物</h2>
+                <p class="card-desc">输出目录下的成品文件夹与压缩包</p>
+              </div>
+              <div class="spacer"></div>
+              <button class="btn btn-sm" id="btn-export-refresh">刷新</button>
+            </div>
+            <div class="card-body tight col" id="export-list"></div>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- ================= 风格库浏览弹窗 ================= -->
+<div class="overlay" id="style-overlay">
+  <div class="modal wide">
+    <div class="modal-head">
+      <h3 class="modal-title">选择绘制风格 · 手绘风格库</h3>
+      <div class="spacer"></div>
+      <input class="input" id="style-search" placeholder="搜索风格名 / 作者 / 关键词，如：水墨、悬疑、线稿"
+        style="width:280px">
+      <button class="btn btn-ghost btn-icon" data-close="style-overlay">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="small muted" id="style-browse-hint" style="margin-bottom:8px"></div>
+      <div class="style-grid" id="style-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 设置弹窗 ================= -->
+<div class="overlay" id="settings-overlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 class="modal-title">设置</h3>
+      <div class="spacer"></div>
+      <button class="btn btn-ghost btn-icon" data-close="settings-overlay">✕</button>
+    </div>
+    <div class="modal-body col">
+      <div class="notice notice-info">
+        <span>🔑</span>
+        <div>本系统使用两套模型服务，密钥相互独立，均只从 <strong>config.py</strong>
+          读取（也可用同名系统环境变量）：<br>
+          · <strong>文本模型</strong>：DeepSeek 官方 API —— <code>DEEPSEEK_API_KEY</code><br>
+          · <strong>图像模型</strong>：本地 ComfyUI（<code>127.0.0.1:8188</code>，当前工作流 <code id="settings-workflow-code">—</code>），默认无需密钥</div>
+      </div>
+
+      <div class="card mb-0">
+        <div class="card-head tight">
+          <h3 class="card-title">密钥状态</h3>
+          <div class="spacer"></div>
+          <button class="btn btn-sm" id="btn-key-status">重新检测</button>
+        </div>
+        <div class="card-body tight col">
+          <div class="small" id="text-key-status-text">检测中…</div>
+          <div class="small" id="key-status-text">检测中…</div>
+        </div>
+      </div>
+
+      <div class="card mb-0">
+        <div class="card-head tight"><h3 class="card-title">文本模型</h3></div>
+        <div class="card-body tight col">
+          <div class="row">
+            <span class="tag tag-primary" id="text-host-tag">—</span>
+            <span class="small muted">DeepSeek 官方 API，无需在本地加载模型</span>
+          </div>
+          <div id="text-model-info" class="small muted"></div>
+        </div>
+      </div>
+
+      <div class="card mb-0">
+        <div class="card-head tight"><h3 class="card-title">图像工作流（ComfyUI）</h3></div>
+        <div class="card-body tight col">
+          <div class="row">
+            <span class="tag tag-primary" id="image-host-tag">—</span>
+          </div>
+          <div class="row">
+            <input class="input" id="image-model-path" style="flex:1" title="ComfyUI 工作流名称（改名后点右侧按钮重新检查）">
+            <button class="btn" id="btn-load-image-model">检查工作流</button>
+          </div>
+          <div id="image-model-info" class="small muted"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 分镜详情弹窗 ================= -->
+<div class="overlay" id="shot-overlay">
+  <div class="modal wide">
+    <div class="modal-head">
+      <h3 class="modal-title" id="shot-modal-title">分镜详情</h3>
+      <div class="spacer"></div>
+      <button class="btn btn-ghost btn-icon" data-close="shot-overlay">✕</button>
+    </div>
+    <div class="modal-body" id="shot-modal-body"></div>
+    <div class="modal-foot">
+      <button class="btn btn-danger btn-sm" id="btn-shot-delete">删除该格</button>
+      <div class="spacer"></div>
+      <button class="btn" data-close="shot-overlay">关闭</button>
+      <button class="btn btn-primary" id="btn-shot-save">保存该格</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 气泡编辑弹窗 ================= -->
+<div class="overlay" id="bubble-overlay">
+  <div class="modal wide">
+    <div class="modal-head">
+      <h3 class="modal-title" id="bubble-modal-title">对话气泡编辑</h3>
+      <div class="spacer"></div>
+      <button class="btn btn-ghost btn-icon" data-close="bubble-overlay">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="bubble-editor">
+        <div>
+          <div class="bubble-canvas" id="bubble-canvas">
+            <div class="empty" style="border:none">
+              <div class="empty-icon">💬</div>
+              <div class="empty-title">请选择一格已有画面的分镜</div>
+            </div>
+          </div>
+          <div class="small muted" style="margin-top:8px">
+            提示：直接拖动虚线框移动气泡，拖右下角小方块缩放。
+          </div>
+        </div>
+        <div class="col">
+          <div class="field">
+            <label class="field-label">一键套用样式</label>
+            <div class="row">
+              <select class="select" id="bubble-style-all" style="flex:1"></select>
+              <button class="btn btn-sm" id="btn-bubble-auto">自动排布</button>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label">气泡列表</label>
+            <div class="bubble-list" id="bubble-list"></div>
+          </div>
+          <div class="field" id="bubble-edit-panel">
+            <label class="field-label">选中气泡的属性</label>
+            <textarea class="textarea" id="bubble-text" rows="3"
+                      placeholder="在此修改气泡文字"></textarea>
+            <select class="select" id="bubble-style-one"></select>
+            <div class="slider-row">
+              <label>横向 X</label>
+              <input type="range" id="bubble-x" min="0" max="1" step="0.005" value="0.3">
+              <output id="bubble-x-out">0.30</output>
+            </div>
+            <div class="slider-row">
+              <label>纵向 Y</label>
+              <input type="range" id="bubble-y" min="0" max="1" step="0.005" value="0.7">
+              <output id="bubble-y-out">0.70</output>
+            </div>
+            <div class="slider-row">
+              <label>宽度</label>
+              <input type="range" id="bubble-w" min="0.08" max="1" step="0.005" value="0.4">
+              <output id="bubble-w-out">0.40</output>
+            </div>
+            <div class="slider-row">
+              <label>高度</label>
+              <input type="range" id="bubble-h" min="0.04" max="0.6" step="0.005" value="0.12">
+              <output id="bubble-h-out">0.12</output>
+            </div>
+            <label class="checkbox"><input type="checkbox" id="bubble-visible" checked>
+              <span>显示该气泡</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-sm" id="btn-bubble-preview">仅预览</button>
+      <div class="spacer"></div>
+      <button class="btn" data-close="bubble-overlay">关闭</button>
+      <button class="btn btn-primary" id="btn-bubble-save">保存气泡到成品图</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 主题设置抽屉 ================= -->
+<div class="overlay theme-overlay" id="theme-overlay">
+  <aside class="theme-sheet" role="dialog" aria-modal="true" aria-label="界面主题">
+    <div class="theme-head">
+      <div>
+        <h3 class="modal-title">界面主题</h3>
+        <p class="theme-sub">配色、背景与质感自动保存在本机</p>
+      </div>
+      <button class="btn btn-ghost btn-icon" data-close="theme-overlay">✕</button>
+    </div>
+    <div class="theme-body">
+      <section class="theme-block">
+        <div class="theme-block-head">
+          <h4>主题配色</h4>
+          <span class="small muted" id="theme-name">暮紫</span>
+        </div>
+        <div class="theme-swatches" id="theme-swatches"></div>
+        <div class="theme-custom-color">
+          <label class="theme-color-well" title="自定义主色">
+            <input type="color" id="theme-custom-color" value="#6c7ce7">
+            <span>自定义主色</span>
+          </label>
+          <code id="theme-custom-hex">#6C7CE7</code>
+          <button class="btn btn-xs" id="theme-custom-reset">用回预设</button>
+        </div>
+      </section>
+
+      <section class="theme-block">
+        <div class="theme-block-head"><h4>外观模式</h4></div>
+        <div class="segmented" id="theme-mode">
+          <button type="button" data-mode="light">☀ 浅色</button>
+          <button type="button" data-mode="dark">🌙 深色</button>
+        </div>
+      </section>
+
+      <section class="theme-block">
+        <div class="theme-block-head">
+          <h4>分区配色</h4>
+          <span class="small muted">菜单栏与内容区可分别设置</span>
+        </div>
+        <div class="region-line">
+          <span class="region-name">左侧菜单栏</span>
+          <div class="region-swatches" id="side-swatches"></div>
+          <span class="region-picked" id="side-picked">墨蓝</span>
+        </div>
+        <div class="region-line">
+          <span class="region-name">右侧内容区</span>
+          <div class="region-swatches" id="content-swatches"></div>
+          <span class="region-picked" id="content-picked">跟随外观</span>
+        </div>
+      </section>
+
+      <section class="theme-block">
+        <div class="theme-block-head">
+          <h4>界面背景</h4>
+          <span class="small muted">整站铺底，可随时更换</span>
+        </div>
+        <div class="theme-wallpapers" id="theme-wallpapers"></div>
+        <div class="theme-bg-custom">
+          <label class="btn btn-sm">上传图片
+            <input type="file" id="theme-bg-file" accept="image/*" hidden>
+          </label>
+          <button class="btn btn-sm" id="theme-bg-clear">清除图片</button>
+          <span class="small muted" id="theme-bg-hint">支持 JPG / PNG / WebP，自动压缩</span>
+        </div>
+        <div class="theme-bg-url">
+          <input class="input" id="theme-bg-url" placeholder="或粘贴网络图片地址 https://…">
+          <button class="btn btn-sm" id="theme-bg-url-apply">应用</button>
+        </div>
+        <div class="theme-slider">
+          <label for="theme-veil">背景遮罩</label>
+          <input type="range" id="theme-veil" min="0" max="96" step="2" value="56">
+          <output id="theme-veil-out">56%</output>
+        </div>
+        <div class="theme-slider">
+          <label for="theme-blur">背景模糊</label>
+          <input type="range" id="theme-blur" min="0" max="24" step="1" value="0">
+          <output id="theme-blur-out">0px</output>
+        </div>
+      </section>
+
+      <section class="theme-block">
+        <div class="theme-block-head"><h4>界面质感</h4></div>
+        <label class="switch-row">
+          <span><b>毛玻璃卡片</b><small>半透明面板 + 背景模糊</small></span>
+          <input type="checkbox" id="theme-glass" checked>
+        </label>
+        <label class="switch-row">
+          <span><b>动态光晕</b><small>背景缓慢流动</small></span>
+          <input type="checkbox" id="theme-animate" checked>
+        </label>
+      </section>
+    </div>
+    <div class="theme-foot">
+      <button class="btn btn-sm" id="theme-reset">恢复默认</button>
+      <div class="spacer"></div>
+      <button class="btn btn-primary" data-close="theme-overlay">完成</button>
+    </div>
+  </aside>
+</div>
+
+<!-- ================= 提示词工作台 ================= -->
+<div class="overlay prompt-overlay" id="prompt-overlay">
+  <div class="modal prompt-modal">
+    <div class="modal-head">
+      <div>
+        <h3 class="modal-title" id="prompt-title">提示词工作台</h3>
+        <p class="prompt-sub" id="prompt-sub">默认按当前工程实时渲染，可编辑后保存</p>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn btn-ghost btn-icon" data-close="prompt-overlay">✕</button>
+    </div>
+    <div class="prompt-body">
+      <aside class="prompt-list" id="prompt-list"></aside>
+      <section class="prompt-editor">
+        <div class="prompt-meta" id="prompt-meta"></div>
+        <div class="prompt-toolbar">
+          <div class="prompt-items" id="prompt-items"></div>
+          <div class="spacer"></div>
+          <span class="prompt-state" id="prompt-state"></span>
+        </div>
+        <div class="prompt-fields" id="prompt-fields">
+          <label class="field" id="prompt-system-field">
+            <span class="field-label">System 提示词</span>
+            <textarea class="textarea prompt-textarea" id="prompt-system" rows="4"
+                      spellcheck="false"></textarea>
+          </label>
+          <label class="field" id="prompt-user-field">
+            <span class="field-label">User 提示词</span>
+            <textarea class="textarea prompt-textarea prompt-textarea-lg" id="prompt-user"
+                      rows="16" spellcheck="false"></textarea>
+          </label>
+          <label class="field" id="prompt-text-field">
+            <span class="field-label" id="prompt-text-label">提示词正文</span>
+            <textarea class="textarea prompt-textarea prompt-textarea-lg" id="prompt-text"
+                      rows="16" spellcheck="false"></textarea>
+          </label>
+        </div>
+        <div class="prompt-note" id="prompt-note"></div>
+      </section>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-sm" id="prompt-reset">恢复默认</button>
+      <button class="btn btn-sm" id="prompt-copy">复制</button>
+      <div class="spacer"></div>
+      <span class="small muted" id="prompt-hint">保存后，下次生成会使用你编辑的版本</span>
+      <button class="btn btn-primary" id="prompt-save">保存并应用</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 规则与工具工作台 ================= -->
+<div class="overlay prompt-overlay" id="resource-overlay">
+  <div class="modal prompt-modal resource-modal">
+    <div class="modal-head">
+      <div>
+        <h3 class="modal-title" id="resource-title">规则与工具</h3>
+        <p class="prompt-sub" id="resource-sub">rules/ 与 tools/ · 修改会写回磁盘</p>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn btn-ghost btn-icon" data-close="resource-overlay">✕</button>
+    </div>
+    <div class="prompt-body">
+      <aside class="prompt-list" id="resource-list"></aside>
+      <section class="prompt-editor">
+        <div class="prompt-meta" id="resource-meta"></div>
+        <div class="prompt-toolbar">
+          <span class="prompt-item-label">文件</span>
+          <code class="resource-path" id="resource-path"></code>
+          <div class="spacer"></div>
+          <button class="btn btn-xs hidden" id="resource-format">格式化 JSON</button>
+          <button class="btn btn-xs hidden" id="resource-command">复制运行命令</button>
+          <button class="btn btn-xs" id="resource-reload">重新载入</button>
+          <span class="prompt-state" id="resource-state"></span>
+        </div>
+        <div class="prompt-fields">
+          <label class="field" id="resource-content-field">
+            <span class="field-label" id="resource-content-label">文件内容</span>
+            <textarea class="textarea prompt-textarea prompt-textarea-lg"
+                      id="resource-content" rows="18" spellcheck="false"></textarea>
+          </label>
+        </div>
+        <div class="prompt-note" id="resource-note"></div>
+      </section>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-sm" id="resource-restore">恢复上次版本</button>
+      <button class="btn btn-sm" id="resource-copy">复制内容</button>
+      <div class="spacer"></div>
+      <span class="small muted" id="resource-hint"></span>
+      <button class="btn btn-primary" id="resource-save">保存文件</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 添加工作流 ================= -->
+<div class="overlay" id="wf-add-overlay">
+  <div class="modal wf-add-modal">
+    <div class="modal-head">
+      <div>
+        <h3 class="modal-title">添加工作流</h3>
+        <p class="prompt-sub">复制现有工作流、从 ComfyUI 导入，或直接粘贴工作流 JSON</p>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn btn-ghost btn-icon" data-close="wf-add-overlay">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field">
+        <label class="field-label">工作流名称</label>
+        <input class="input" id="wf-add-name" placeholder="例如：我的 Qwen 分镜工作流">
+      </div>
+      <div class="segmented wf-add-modes" id="wf-add-mode">
+        <button type="button" data-mode="duplicate" class="active">复制当前</button>
+        <button type="button" data-mode="comfyui">从 ComfyUI 导入</button>
+        <button type="button" data-mode="json">粘贴 JSON</button>
+      </div>
+      <div class="wf-add-pane" id="wf-add-duplicate">
+        <p class="small muted">以当前选中的工作流为模板复制一份，节点、连线都会保留。</p>
+      </div>
+      <div class="wf-add-pane hidden" id="wf-add-comfyui">
+        <label class="field-label">ComfyUI 工作流</label>
+        <select class="select" id="wf-comfy-list"></select>
+        <p class="small muted">从 ComfyUI 的 userdata/workflows 读取，支持界面格式与 API 格式。</p>
+      </div>
+      <div class="wf-add-pane hidden" id="wf-add-json">
+        <label class="field-label">工作流 JSON</label>
+        <input type="file" class="input" id="wf-json-file" accept=".json,application/json">
+        <textarea class="textarea prompt-textarea" id="wf-json" rows="12"
+                  placeholder="粘贴 ComfyUI 导出的 API JSON，或 Ctrl+S 保存的界面格式 JSON"></textarea>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <div class="spacer"></div>
+      <button class="btn" data-close="wf-add-overlay">取消</button>
+      <button class="btn btn-primary" id="wf-add-confirm">创建工作流</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 添加节点 ================= -->
+<div class="overlay" id="wf-node-overlay">
+  <div class="modal wf-node-modal">
+    <div class="modal-head">
+      <div>
+        <h3 class="modal-title">添加节点</h3>
+        <p class="prompt-sub">从 ComfyUI 节点库添加一个节点，再拖线连接</p>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn btn-ghost btn-icon" data-close="wf-node-overlay">✕</button>
+    </div>
+    <div class="modal-body">
+      <input class="input" id="wf-node-search" placeholder="搜索节点名 / class_type / 分类…">
+      <div class="wf-node-list" id="wf-node-list"></div>
+    </div>
+    <div class="modal-foot">
+      <span class="small muted" id="wf-node-count"></span>
+      <div class="spacer"></div>
+      <button class="btn" data-close="wf-node-overlay">关闭</button>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script src="/static/app.js?v=20261103p"></script>
+<script src="/static/promptstudio.js?v=20261103p"></script>
+<script src="/static/resources.js?v=20261103p"></script>
+<script src="/static/workflows.js?v=20261103p"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

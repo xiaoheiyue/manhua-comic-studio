@@ -1,0 +1,21 @@
+# 运行环境依赖
+# 安装：env\Scripts\python.exe -m pip install -r requirements.txt
+
+# ---- Web 后端 ----
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+
+# ---- HTTP 与图像处理 ----
+requests>=2.31
+pillow>=10.0
+numpy>=1.26
+chardet>=5.2
+
+# ---- 姿态：真人照片 -> OpenPose 骨架 ----\nscipy>=1.12\nmediapipe==0.10.21\nopencv-python>=4.11,<5\n\n# ---- 导出（PDF 合成）----
+reportlab>=4.0
+
+# ---- 可选：界面截图脚本（shots.py）----
+# playwright>=1.40
+
+

@@ -1,0 +1,197 @@
+{
+  "9": {
+    "inputs": {
+      "filename_prefix": "manhua_style",
+      "images": [
+        "57:8",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "57:30": {
+    "inputs": {
+      "clip_name": "qwen_3_4b_fp8_mixed.safetensors",
+      "type": "lumina2",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "加载CLIP（Z-Image 文本编码器）"
+    }
+  },
+  "57:29": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "57:28": {
+    "inputs": {
+      "unet_name": "z_image_turbo_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器"
+    }
+  },
+  "57:11": {
+    "inputs": {
+      "shift": 3,
+      "model": [
+        "57:28",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingAuraFlow",
+    "_meta": {
+      "title": "采样算法（AuraFlow）"
+    }
+  },
+  "57:13": {
+    "inputs": {
+      "width": 1088,
+      "height": 1216,
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "空Latent图像（SD3）"
+    }
+  },
+  "90": {
+    "inputs": {
+      "image": ""
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "参考图1_画风"
+    }
+  },
+  "91": {
+    "inputs": {
+      "image": ""
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "参考图2_角色"
+    }
+  },
+  "92": {
+    "inputs": {
+      "image": ""
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "参考图3_角色"
+    }
+  },
+  "80": {
+    "inputs": {
+      "clip": [
+        "57:30",
+        0
+      ],
+      "prompt": "",
+      "auto_resize_images": true,
+      "vae": [
+        "57:29",
+        0
+      ],
+      "image1": [
+        "90",
+        0
+      ],
+      "image2": [
+        "91",
+        0
+      ],
+      "image3": [
+        "92",
+        0
+      ]
+    },
+    "class_type": "TextEncodeZImageOmni",
+    "_meta": {
+      "title": "Z-Image 参考图条件（画风/角色）"
+    }
+  },
+  "81": {
+    "inputs": {
+      "conditioning": [
+        "80",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "条件零化"
+    }
+  },
+  "57:3": {
+    "inputs": {
+      "seed": 0,
+      "steps": 8,
+      "cfg": 1.4,
+      "sampler_name": "res_multistep",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "57:11",
+        0
+      ],
+      "positive": [
+        "80",
+        0
+      ],
+      "negative": [
+        "900",
+        0
+      ],
+      "latent_image": [
+        "57:13",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "57:8": {
+    "inputs": {
+      "samples": [
+        "57:3",
+        0
+      ],
+      "vae": [
+        "57:29",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "900": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "低质量, 模糊, 变形, 多余的手指, 水印, 签名, 乱码文字, 多格漫画, 画框, 边框",
+      "clip": [
+        "57:30",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "负面提示词"
+    }
+  }
+}

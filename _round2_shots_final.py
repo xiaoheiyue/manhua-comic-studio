@@ -1,0 +1,20 @@
+import os, pathlib
+from playwright.sync_api import sync_playwright
+OUT=pathlib.Path("screenshots/round2"); OUT.mkdir(exist_ok=True)
+exe=os.path.expandvars(r"%LOCALAPPDATA%\ms-playwright\chromium-1243\chrome-win64\chrome.exe")
+with sync_playwright() as p:
+    b=p.chromium.launch(executable_path=exe); pg=b.new_page(viewport={"width":1600,"height":1000})
+    errs=[]; pg.on("pageerror",lambda e: errs.append(str(e)))
+    pg.goto("http://127.0.0.1:7870/",wait_until="networkidle",timeout=60000); pg.wait_for_timeout(2500)
+    def nav(s): pg.click(f'.nav-item[data-stage="{s}"]'); pg.wait_for_timeout(1500)
+    def snap(n): pg.screenshot(path=str(OUT/f"{n}.png")); print(n,flush=True)
+    nav("4"); pg.wait_for_timeout(800); snap("05_分镜拆解_一格一人")
+    nav("5"); pg.wait_for_timeout(1500); snap("06_25格分镜")
+    nav("6"); pg.wait_for_timeout(1500); snap("07_姿态图")
+    nav("7"); pg.wait_for_timeout(1500); snap("08_出图与预览")
+    pg.eval_on_selector("#page-grid","e=>e.scrollIntoView({block:'center'})"); pg.wait_for_timeout(800); snap("09_分格页")
+    nav("studio"); pg.wait_for_timeout(1500); snap("10_非漫画创作")
+    nav("projects"); pg.wait_for_timeout(1500); snap("11_工程与产物")
+    nav("logs"); pg.wait_for_timeout(1200); snap("12_运行日志")
+    print("errors",errs)
+    b.close()

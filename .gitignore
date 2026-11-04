@@ -1,0 +1,67 @@
+# =============================================================================
+# 漫画生成器 · .gitignore
+# 目标：公开仓库只包含「代码 + 文档 + 规则 + 工作流」，不含密钥、模型权重、
+#       运行产物、第三方版权资料。
+# =============================================================================
+
+# ---- 密钥与本地配置 ----
+.env
+.env.*
+!.env.example
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# ---- 虚拟环境 ----
+env/
+.venv/
+venv/
+ENV/
+
+# ---- Node（仅截图脚本用得到）----
+node_modules/
+package-lock.json
+
+# ---- 运行期数据与产物（体积大、含用户小说原文与生成图）----
+data/
+outputs/
+models/
+screenshots/
+*.log
+*.tmp
+*.bak
+*.bak-*
+
+# ---- 第三方资料 / 旧实验（版权来源复杂，不进公开仓库）----
+参考资料/
+archive/
+角色分镜一致性资料/*.png
+手稿/
+*.docx
+*.pdf
+
+# ---- 第三方风格库（用 scripts/fetch_handraw_style.ps1 拉取，LICENSE 需保留）----
+handraw-style/
+
+# ---- 编辑器与系统 ----
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- 本地样例文本（演示请用 samples/ 里的公版文本）----
+first_chapter.txt
+xiaoshuo.txt

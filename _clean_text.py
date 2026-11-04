@@ -1,0 +1,11 @@
+import pathlib, re
+raw = pathlib.Path("data/uploads/孔乙己_网络文本.txt").read_text(encoding="utf-8")
+start = raw.find("鲁镇的酒店")
+end = raw.find("一九一九年三月")
+body = raw[start:end+len("一九一九年三月")].strip()
+body = re.sub(r"\n{3,}", "\n\n", body)
+out = pathlib.Path("data/uploads/孔乙己_正文.txt")
+out.write_text(body, encoding="utf-8")
+out2 = pathlib.Path("outputs/_e2e_孔乙己_正文.txt")
+out2.parent.mkdir(exist_ok=True); out2.write_text(body, encoding="utf-8")
+print("chars", len(body), "paragraphs", len([x for x in body.split("\n") if x.strip()]))
