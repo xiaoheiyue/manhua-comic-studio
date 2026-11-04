@@ -1,0 +1,3698 @@
+{
+ "version": 1,
+ "source": "handraw-style / skills/handdraw-style-prompter/references/layouts.json (SB-001–SB-071)",
+ "geometry_note": "cells 为归一化坐标 [x,y,w,h]；poly 为归一化多边形；captions 为字幕栏矩形。",
+ "geometries": {
+  "splash-1": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0,
+     0,
+     1,
+     1
+    ]
+   ],
+   "bleed": true
+  },
+  "poster-1": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.045,
+     0.045,
+     0.91,
+     0.78
+    ]
+   ],
+   "bleed": false,
+   "note": "海报式主视觉，底部留标题区",
+   "text_zone": [
+    0.045,
+    0.85,
+    0.91,
+    0.1
+   ]
+  },
+  "pagewide-1": {
+   "ratio": 1.55,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.88
+    ]
+   ],
+   "bleed": false,
+   "note": "跨页式宽幅"
+  },
+  "webtoon-1": {
+   "ratio": 0.86,
+   "cells": [
+    [
+     0,
+     0,
+     1,
+     1
+    ]
+   ],
+   "bleed": true,
+   "note": "原生条漫单格"
+  },
+  "webtoon-2": {
+   "ratio": 0.86,
+   "cells": [
+    [
+     0.02,
+     0,
+     0.96,
+     0.497
+    ],
+    [
+     0.02,
+     0.503,
+     0.96,
+     0.497
+    ]
+   ],
+   "bleed": true,
+   "note": "原生条漫两格竖排"
+  },
+  "webtoon-3": {
+   "ratio": 0.68,
+   "cells": [
+    [
+     0.02,
+     0,
+     0.96,
+     0.3293
+    ],
+    [
+     0.02,
+     0.3353,
+     0.96,
+     0.3293
+    ],
+    [
+     0.02,
+     0.6707,
+     0.96,
+     0.3293
+    ]
+   ],
+   "bleed": true,
+   "note": "原生条漫三格竖排"
+  },
+  "grid-2x2": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.468,
+     0.468
+    ],
+    [
+     0.5,
+     0.02,
+     0.468,
+     0.468
+    ],
+    [
+     0.02,
+     0.5,
+     0.468,
+     0.468
+    ],
+    [
+     0.5,
+     0.5,
+     0.468,
+     0.468
+    ]
+   ],
+   "bleed": false
+  },
+  "grid-3x2": {
+   "ratio": 0.68,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.308,
+     0.468
+    ],
+    [
+     0.34,
+     0.02,
+     0.308,
+     0.468
+    ],
+    [
+     0.66,
+     0.02,
+     0.308,
+     0.468
+    ],
+    [
+     0.02,
+     0.5,
+     0.308,
+     0.468
+    ],
+    [
+     0.34,
+     0.5,
+     0.308,
+     0.468
+    ],
+    [
+     0.66,
+     0.5,
+     0.308,
+     0.468
+    ]
+   ],
+   "bleed": false
+  },
+  "grid-2x3": {
+   "ratio": 0.78,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.468,
+     0.308
+    ],
+    [
+     0.5,
+     0.02,
+     0.468,
+     0.308
+    ],
+    [
+     0.02,
+     0.34,
+     0.468,
+     0.308
+    ],
+    [
+     0.5,
+     0.34,
+     0.468,
+     0.308
+    ],
+    [
+     0.02,
+     0.66,
+     0.468,
+     0.308
+    ],
+    [
+     0.5,
+     0.66,
+     0.468,
+     0.308
+    ]
+   ],
+   "bleed": false
+  },
+  "grid-3x3": {
+   "ratio": 0.8,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.308,
+     0.308
+    ],
+    [
+     0.34,
+     0.02,
+     0.308,
+     0.308
+    ],
+    [
+     0.66,
+     0.02,
+     0.308,
+     0.308
+    ],
+    [
+     0.02,
+     0.34,
+     0.308,
+     0.308
+    ],
+    [
+     0.34,
+     0.34,
+     0.308,
+     0.308
+    ],
+    [
+     0.66,
+     0.34,
+     0.308,
+     0.308
+    ],
+    [
+     0.02,
+     0.66,
+     0.308,
+     0.308
+    ],
+    [
+     0.34,
+     0.66,
+     0.308,
+     0.308
+    ],
+    [
+     0.66,
+     0.66,
+     0.308,
+     0.308
+    ]
+   ],
+   "bleed": false
+  },
+  "rows-2": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.474
+    ],
+    [
+     0.02,
+     0.506,
+     0.96,
+     0.474
+    ]
+   ],
+   "bleed": false
+  },
+  "rows-3": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.312
+    ],
+    [
+     0.02,
+     0.344,
+     0.96,
+     0.312
+    ],
+    [
+     0.02,
+     0.668,
+     0.96,
+     0.312
+    ]
+   ],
+   "bleed": false
+  },
+  "rows-4": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.231
+    ],
+    [
+     0.02,
+     0.263,
+     0.96,
+     0.231
+    ],
+    [
+     0.02,
+     0.506,
+     0.96,
+     0.231
+    ],
+    [
+     0.02,
+     0.749,
+     0.96,
+     0.231
+    ]
+   ],
+   "bleed": false
+  },
+  "rows-5": {
+   "ratio": 0.78,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.1824
+    ],
+    [
+     0.02,
+     0.2144,
+     0.96,
+     0.1824
+    ],
+    [
+     0.02,
+     0.4088,
+     0.96,
+     0.1824
+    ],
+    [
+     0.02,
+     0.6032,
+     0.96,
+     0.1824
+    ],
+    [
+     0.02,
+     0.7976,
+     0.96,
+     0.1824
+    ]
+   ],
+   "bleed": false
+  },
+  "filmstrip-4": {
+   "ratio": 0.58,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.234
+    ],
+    [
+     0.02,
+     0.262,
+     0.96,
+     0.234
+    ],
+    [
+     0.02,
+     0.504,
+     0.96,
+     0.234
+    ],
+    [
+     0.02,
+     0.746,
+     0.96,
+     0.234
+    ]
+   ],
+   "bleed": false
+  },
+  "columns-3": {
+   "ratio": 0.58,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.312,
+     0.96
+    ],
+    [
+     0.344,
+     0.02,
+     0.312,
+     0.96
+    ],
+    [
+     0.668,
+     0.02,
+     0.312,
+     0.96
+    ]
+   ],
+   "bleed": false
+  },
+  "split-vertical-2": {
+   "ratio": 0.75,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.47,
+     0.96
+    ],
+    [
+     0.51,
+     0.02,
+     0.47,
+     0.96
+    ]
+   ],
+   "bleed": false
+  },
+  "mirror-2": {
+   "ratio": 0.8,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.477
+    ],
+    [
+     0.02,
+     0.503,
+     0.96,
+     0.477
+    ]
+   ],
+   "bleed": false
+  },
+  "splash-top-2": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.58
+    ],
+    [
+     0.02,
+     0.625,
+     0.47,
+     0.355
+    ],
+    [
+     0.51,
+     0.625,
+     0.47,
+     0.355
+    ]
+   ],
+   "bleed": false
+  },
+  "splash-top-3": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.56
+    ],
+    [
+     0.02,
+     0.605,
+     0.305,
+     0.375
+    ],
+    [
+     0.355,
+     0.605,
+     0.305,
+     0.375
+    ],
+    [
+     0.69,
+     0.605,
+     0.305,
+     0.375
+    ]
+   ],
+   "bleed": false
+  },
+  "splash-bottom-2": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.47,
+     0.34
+    ],
+    [
+     0.51,
+     0.02,
+     0.47,
+     0.34
+    ],
+    [
+     0.02,
+     0.39,
+     0.96,
+     0.59
+    ]
+   ],
+   "bleed": false
+  },
+  "center-focus-4": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.24
+    ],
+    [
+     0.09,
+     0.29,
+     0.82,
+     0.37
+    ],
+    [
+     0.02,
+     0.68,
+     0.47,
+     0.3
+    ],
+    [
+     0.51,
+     0.68,
+     0.47,
+     0.3
+    ]
+   ],
+   "bleed": false,
+   "note": "中央大格 + 顶部宽幅建立格 + 底部两格（顶部 24% 高，避免过度裁切）"
+  },
+  "radial-5": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.44,
+     0.24
+    ],
+    [
+     0.54,
+     0.02,
+     0.44,
+     0.24
+    ],
+    [
+     0.31,
+     0.29,
+     0.38,
+     0.4
+    ],
+    [
+     0.02,
+     0.72,
+     0.44,
+     0.26
+    ],
+    [
+     0.54,
+     0.72,
+     0.44,
+     0.26
+    ]
+   ],
+   "bleed": false
+  },
+  "spiral-5": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.6,
+     0.26
+    ],
+    [
+     0.64,
+     0.02,
+     0.34,
+     0.26
+    ],
+    [
+     0.38,
+     0.3,
+     0.6,
+     0.3
+    ],
+    [
+     0.02,
+     0.3,
+     0.32,
+     0.3
+    ],
+    [
+     0.1,
+     0.63,
+     0.88,
+     0.31
+    ]
+   ],
+   "bleed": false
+  },
+  "escalate-4": {
+   "ratio": 0.78,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.1432
+    ],
+    [
+     0.02,
+     0.1752,
+     0.96,
+     0.1894
+    ],
+    [
+     0.02,
+     0.3766,
+     0.96,
+     0.2495
+    ],
+    [
+     0.02,
+     0.6381,
+     0.96,
+     0.3419
+    ]
+   ],
+   "bleed": false
+  },
+  "deescalate-4": {
+   "ratio": 0.78,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.3419
+    ],
+    [
+     0.02,
+     0.3739,
+     0.96,
+     0.2495
+    ],
+    [
+     0.02,
+     0.6354,
+     0.96,
+     0.1894
+    ],
+    [
+     0.02,
+     0.8368,
+     0.96,
+     0.1432
+    ]
+   ],
+   "bleed": false
+  },
+  "plunge-4": {
+   "ratio": 0.86,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.1155
+    ],
+    [
+     0.02,
+     0.1475,
+     0.96,
+     0.1785
+    ],
+    [
+     0.02,
+     0.338,
+     0.96,
+     0.2625
+    ],
+    [
+     0.02,
+     0.6125,
+     0.96,
+     0.3675
+    ]
+   ],
+   "bleed": false
+  },
+  "stair-4": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.64,
+     0.24
+    ],
+    [
+     0.34,
+     0.27,
+     0.64,
+     0.24
+    ],
+    [
+     0.02,
+     0.52,
+     0.64,
+     0.24
+    ],
+    [
+     0.34,
+     0.77,
+     0.64,
+     0.21
+    ]
+   ],
+   "bleed": false
+  },
+  "free-2": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.06,
+     0.05,
+     0.42,
+     0.38
+    ],
+    [
+     0.52,
+     0.55,
+     0.42,
+     0.38
+    ]
+   ],
+   "bleed": false
+  },
+  "free-3": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.05,
+     0.04,
+     0.44,
+     0.34
+    ],
+    [
+     0.52,
+     0.26,
+     0.42,
+     0.34
+    ],
+    [
+     0.16,
+     0.66,
+     0.66,
+     0.3
+    ]
+   ],
+   "bleed": false
+  },
+  "free-4": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.04,
+     0.03,
+     0.42,
+     0.32
+    ],
+    [
+     0.54,
+     0.1,
+     0.42,
+     0.32
+    ],
+    [
+     0.06,
+     0.5,
+     0.4,
+     0.3
+    ],
+    [
+     0.5,
+     0.62,
+     0.44,
+     0.32
+    ]
+   ],
+   "bleed": false
+  },
+  "free-5": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.04,
+     0.03,
+     0.38,
+     0.28
+    ],
+    [
+     0.56,
+     0.03,
+     0.4,
+     0.28
+    ],
+    [
+     0.18,
+     0.34,
+     0.44,
+     0.28
+    ],
+    [
+     0.04,
+     0.65,
+     0.4,
+     0.28
+    ],
+    [
+     0.56,
+     0.65,
+     0.4,
+     0.28
+    ]
+   ],
+   "bleed": false
+  },
+  "empty-2": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.08,
+     0.06,
+     0.36,
+     0.28
+    ],
+    [
+     0.56,
+     0.66,
+     0.36,
+     0.28
+    ]
+   ],
+   "bleed": false,
+   "note": "大量留白"
+  },
+  "empty-3": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.06,
+     0.05,
+     0.4,
+     0.28
+    ],
+    [
+     0.54,
+     0.36,
+     0.38,
+     0.26
+    ],
+    [
+     0.14,
+     0.7,
+     0.42,
+     0.22
+    ]
+   ],
+   "bleed": false,
+   "note": "大量留白"
+  },
+  "shattered-6": {
+   "ratio": 0.78,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.38,
+     0.26
+    ],
+    [
+     0.44,
+     0.02,
+     0.3,
+     0.18
+    ],
+    [
+     0.78,
+     0.02,
+     0.2,
+     0.34
+    ],
+    [
+     0.02,
+     0.32,
+     0.26,
+     0.38
+    ],
+    [
+     0.32,
+     0.24,
+     0.44,
+     0.34
+    ],
+    [
+     0.2,
+     0.6,
+     0.6,
+     0.38
+    ]
+   ],
+   "bleed": false
+  },
+  "inset-3": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.96
+    ],
+    [
+     0.6,
+     0.63,
+     0.34,
+     0.28
+    ],
+    [
+     0.06,
+     0.06,
+     0.3,
+     0.24
+    ]
+   ],
+   "bleed": false,
+   "note": "主体画格 + 嵌套小格（叠放）"
+  },
+  "phone-3": {
+   "ratio": 0.78,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.54
+    ],
+    [
+     0.06,
+     0.6,
+     0.42,
+     0.36
+    ],
+    [
+     0.52,
+     0.6,
+     0.42,
+     0.36
+    ]
+   ],
+   "bleed": false
+  },
+  "magazine-4": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.6,
+     0.55
+    ],
+    [
+     0.64,
+     0.02,
+     0.34,
+     0.55
+    ],
+    [
+     0.02,
+     0.59,
+     0.34,
+     0.39
+    ],
+    [
+     0.38,
+     0.59,
+     0.6,
+     0.39
+    ]
+   ],
+   "bleed": false
+  },
+  "stage-3": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.58
+    ],
+    [
+     0.02,
+     0.62,
+     0.47,
+     0.36
+    ],
+    [
+     0.51,
+     0.62,
+     0.47,
+     0.36
+    ]
+   ],
+   "bleed": false
+  },
+  "window-3": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.24,
+     0.1,
+     0.52,
+     0.62
+    ],
+    [
+     0.02,
+     0.02,
+     0.2,
+     0.16
+    ],
+    [
+     0.78,
+     0.8,
+     0.2,
+     0.16
+    ]
+   ],
+   "bleed": false
+  },
+  "type-3": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.44
+    ],
+    [
+     0.02,
+     0.48,
+     0.47,
+     0.5
+    ],
+    [
+     0.51,
+     0.48,
+     0.47,
+     0.5
+    ]
+   ],
+   "bleed": false
+  },
+  "wide-3": {
+   "ratio": 0.56,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.3107
+    ],
+    [
+     0.02,
+     0.3447,
+     0.96,
+     0.3107
+    ],
+    [
+     0.02,
+     0.6693,
+     0.96,
+     0.3107
+    ]
+   ],
+   "bleed": false
+  },
+  "geo-5": {
+   "ratio": 0.72,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.3,
+     0.28
+    ],
+    [
+     0.68,
+     0.02,
+     0.3,
+     0.28
+    ],
+    [
+     0.02,
+     0.7,
+     0.3,
+     0.28
+    ],
+    [
+     0.68,
+     0.7,
+     0.3,
+     0.28
+    ],
+    {
+     "poly": [
+      [
+       0.5,
+       0.24
+      ],
+      [
+       0.76,
+       0.5
+      ],
+      [
+       0.5,
+       0.76
+      ],
+      [
+       0.24,
+       0.5
+      ]
+     ]
+    }
+   ],
+   "bleed": false,
+   "note": "四角矩形 + 中心菱形画格"
+  },
+  "caption-2": {
+   "ratio": 0.78,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.3792
+    ],
+    [
+     0.02,
+     0.506,
+     0.96,
+     0.3792
+    ]
+   ],
+   "bleed": false,
+   "captions": [
+    [
+     0.02,
+     0.3992,
+     0.96,
+     0.0948
+    ],
+    [
+     0.02,
+     0.8852,
+     0.96,
+     0.0948
+    ]
+   ],
+   "note": "上图下文（字幕栏）"
+  },
+  "caption-3": {
+   "ratio": 0.78,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.2496
+    ],
+    [
+     0.02,
+     0.344,
+     0.96,
+     0.2496
+    ],
+    [
+     0.02,
+     0.668,
+     0.96,
+     0.2496
+    ]
+   ],
+   "bleed": false,
+   "captions": [
+    [
+     0.02,
+     0.2696,
+     0.96,
+     0.0624
+    ],
+    [
+     0.02,
+     0.5936,
+     0.96,
+     0.0624
+    ],
+    [
+     0.02,
+     0.9176,
+     0.96,
+     0.0624
+    ]
+   ],
+   "note": "上图下文（字幕栏）"
+  },
+  "caption-4": {
+   "ratio": 0.92,
+   "cells": [
+    [
+     0.02,
+     0.02,
+     0.96,
+     0.1848
+    ],
+    [
+     0.02,
+     0.263,
+     0.96,
+     0.1848
+    ],
+    [
+     0.02,
+     0.506,
+     0.96,
+     0.1848
+    ],
+    [
+     0.02,
+     0.749,
+     0.96,
+     0.1848
+    ]
+   ],
+   "bleed": false,
+   "captions": [
+    [
+     0.02,
+     0.2048,
+     0.96,
+     0.0462
+    ],
+    [
+     0.02,
+     0.4478,
+     0.96,
+     0.0462
+    ],
+    [
+     0.02,
+     0.6908,
+     0.96,
+     0.0462
+    ],
+    [
+     0.02,
+     0.9338,
+     0.96,
+     0.0462
+    ]
+   ],
+   "note": "上图下文（字幕栏）"
+  }
+ },
+ "layouts": {
+  "SB-001": {
+   "id": "SB-001",
+   "name": "规则网格",
+   "name_en": "Regular Grid",
+   "keywords": [
+    "漫画分镜",
+    "规则网格",
+    "等分面板",
+    "稳定节奏",
+    "日常对白"
+   ],
+   "family": "grid-2x2",
+   "geometry": "grid-2x2",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.85,
+    "action": 0.35,
+    "emotion": 0.45,
+    "establish": 0.5,
+    "montage": 0.45,
+    "suspense": 0.45,
+    "comedy": 0.55
+   },
+   "beats": [
+    "对白",
+    "日常"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-001"
+  },
+  "SB-002": {
+   "id": "SB-002",
+   "name": "四格起承转合",
+   "name_en": "Four-Panel Kishōtenketsu",
+   "keywords": [
+    "漫画分镜",
+    "四格漫画",
+    "起承转合",
+    "四等格",
+    "搞笑短剧"
+   ],
+   "family": "grid-2x2",
+   "geometry": "grid-2x2",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.7,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.5,
+    "suspense": 0.4,
+    "comedy": 0.9
+   },
+   "beats": [
+    "幽默",
+    "日常",
+    "喜剧"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-002"
+  },
+  "SB-003": {
+   "id": "SB-003",
+   "name": "大格 + 小格",
+   "name_en": "Hero Panel + Inset Panels",
+   "keywords": [
+    "漫画分镜",
+    "主次画格",
+    "一大配多小",
+    "视觉重点",
+    "节奏对比"
+   ],
+   "family": "splash-top-3",
+   "geometry": "splash-top-3",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.7,
+    "action": 0.55,
+    "emotion": 0.6,
+    "establish": 0.6,
+    "montage": 0.5,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "对白",
+    "揭示",
+    "主次"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-003"
+  },
+  "SB-004": {
+   "id": "SB-004",
+   "name": "顶部大格开场",
+   "name_en": "Top Splash Panel Opening",
+   "keywords": [
+    "漫画分镜",
+    "顶部大格",
+    "横跨页面",
+    "建立场景",
+    "开场分镜"
+   ],
+   "family": "splash-top-2",
+   "geometry": "splash-top-2",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.5,
+    "action": 0.45,
+    "emotion": 0.4,
+    "establish": 0.95,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "建立",
+    "转场",
+    "开场"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-004"
+  },
+  "SB-005": {
+   "id": "SB-005",
+   "name": "底部大格收尾",
+   "name_en": "Bottom Climax Panel Ending",
+   "keywords": [
+    "漫画分镜",
+    "底部大格",
+    "高潮收尾",
+    "情绪落点",
+    "反转揭示"
+   ],
+   "family": "splash-bottom-2",
+   "geometry": "splash-bottom-2",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.45,
+    "action": 0.75,
+    "emotion": 0.85,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.6,
+    "comedy": 0.4
+   },
+   "beats": [
+    "情绪",
+    "揭示",
+    "收尾"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-005"
+  },
+  "SB-006": {
+   "id": "SB-006",
+   "name": "中央大格爆发",
+   "name_en": "Center Focal Panel",
+   "keywords": [
+    "漫画分镜",
+    "中央大格",
+    "视觉中心",
+    "核心爆发",
+    "动作高潮"
+   ],
+   "family": "center-focus-4",
+   "geometry": "center-focus-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.8,
+    "emotion": 0.7,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.65,
+    "comedy": 0.4
+   },
+   "beats": [
+    "动作",
+    "爆发",
+    "揭示"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-006"
+  },
+  "SB-007": {
+   "id": "SB-007",
+   "name": "对角切割",
+   "name_en": "Diagonal Dynamic Split",
+   "keywords": [
+    "漫画分镜",
+    "对角切割",
+    "斜线构图",
+    "速度感",
+    "冲突对峙"
+   ],
+   "family": "diag-2",
+   "geometry": "diag-2",
+   "panels": 2,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.85,
+    "emotion": 0.5,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.6,
+    "comedy": 0.4
+   },
+   "beats": [
+    "动作",
+    "冲突",
+    "对峙"
+   ],
+   "approx": true,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-007"
+  },
+  "SB-008": {
+   "id": "SB-008",
+   "name": "Z 字阅读",
+   "name_en": "Z-Pattern Reading Flow",
+   "keywords": [
+    "漫画分镜",
+    "Z字阅读",
+    "视线流动",
+    "经典阅读路径",
+    "清晰叙事"
+   ],
+   "family": "grid-2x2",
+   "geometry": "grid-2x2",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.8,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.5,
+    "suspense": 0.45,
+    "comedy": 0.4
+   },
+   "beats": [
+    "对白",
+    "日常",
+    "阅读流"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-008"
+  },
+  "SB-009": {
+   "id": "SB-009",
+   "name": "S 型阅读",
+   "name_en": "S-Curve Narrative Flow",
+   "keywords": [
+    "漫画分镜",
+    "S型阅读",
+    "柔和曲线",
+    "轻快浪漫",
+    "旅途叙事"
+   ],
+   "family": "free-4",
+   "geometry": "free-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.7,
+    "establish": 0.4,
+    "montage": 0.7,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "情绪",
+    "蒙太奇",
+    "浪漫"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-009"
+  },
+  "SB-010": {
+   "id": "SB-010",
+   "name": "螺旋阅读",
+   "name_en": "Spiral Inward Flow",
+   "keywords": [
+    "漫画分镜",
+    "螺旋阅读",
+    "环形收拢",
+    "层层逼近",
+    "核心聚焦"
+   ],
+   "family": "spiral-5",
+   "geometry": "spiral-5",
+   "panels": 5,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.6,
+    "suspense": 0.8,
+    "comedy": 0.4
+   },
+   "beats": [
+    "悬疑",
+    "内心",
+    "聚焦"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-010"
+  },
+  "SB-011": {
+   "id": "SB-011",
+   "name": "放射型分镜",
+   "name_en": "Radial Converging Panels",
+   "keywords": [
+    "漫画分镜",
+    "放射型分镜",
+    "向心聚拢",
+    "爆发时刻",
+    "强焦点"
+   ],
+   "family": "radial-5",
+   "geometry": "radial-5",
+   "panels": 5,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.85,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.55,
+    "comedy": 0.4
+   },
+   "beats": [
+    "动作",
+    "爆发",
+    "聚焦"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-011"
+  },
+  "SB-012": {
+   "id": "SB-012",
+   "name": "碎片面板",
+   "name_en": "Shattered Glass Panels",
+   "keywords": [
+    "漫画分镜",
+    "碎片面板",
+    "玻璃破碎",
+    "混乱战斗",
+    "心理冲击"
+   ],
+   "family": "shattered-6",
+   "geometry": "shattered-6",
+   "panels": 6,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.9,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.6,
+    "comedy": 0.4
+   },
+   "beats": [
+    "动作",
+    "冲突",
+    "混乱"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-012"
+  },
+  "SB-013": {
+   "id": "SB-013",
+   "name": "破框构图",
+   "name_en": "Border Break",
+   "keywords": [
+    "漫画分镜",
+    "破框构图",
+    "越界动态",
+    "空间突破",
+    "力量感"
+   ],
+   "family": "inset-3",
+   "geometry": "inset-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.7,
+    "emotion": 0.55,
+    "establish": 0.6,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "动作",
+    "揭示",
+    "破框"
+   ],
+   "approx": true,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-013"
+  },
+  "SB-014": {
+   "id": "SB-014",
+   "name": "跨格人物",
+   "name_en": "Multi-Panel Spanning Character",
+   "keywords": [
+    "漫画分镜",
+    "跨格人物",
+    "连续动作",
+    "跨格延伸",
+    "流动感"
+   ],
+   "family": "rows-3",
+   "geometry": "rows-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.7,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.6,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "动作",
+    "连续"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-014"
+  },
+  "SB-015": {
+   "id": "SB-015",
+   "name": "跨格背景",
+   "name_en": "Continuous Background Across Panels",
+   "keywords": [
+    "漫画分镜",
+    "跨格背景",
+    "共享空间",
+    "全景延续",
+    "时空位移"
+   ],
+   "family": "rows-3",
+   "geometry": "rows-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.75,
+    "montage": 0.7,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "建立",
+    "转场",
+    "空间"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-015"
+  },
+  "SB-016": {
+   "id": "SB-016",
+   "name": "一镜到底",
+   "name_en": "Single Continuous Take",
+   "keywords": [
+    "漫画分镜",
+    "一镜到底",
+    "完整空间",
+    "多位置连续",
+    "纯镜头感"
+   ],
+   "family": "rows-3",
+   "geometry": "rows-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.7,
+    "montage": 0.7,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "连续",
+    "转场",
+    "长镜头"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-016"
+  },
+  "SB-017": {
+   "id": "SB-017",
+   "name": "电影胶片式",
+   "name_en": "Cinematic Filmstrip",
+   "keywords": [
+    "漫画分镜",
+    "电影胶片",
+    "连续画格",
+    "时间推进",
+    "电影质感"
+   ],
+   "family": "filmstrip-4",
+   "geometry": "filmstrip-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.5,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.8,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "蒙太奇",
+    "连续",
+    "时间"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-017"
+  },
+  "SB-018": {
+   "id": "SB-018",
+   "name": "宽银幕横格",
+   "name_en": "Widescreen Horizontal Panels",
+   "keywords": [
+    "漫画分镜",
+    "宽银幕横格",
+    "横向宽幅",
+    "宏大场景",
+    "动作场面"
+   ],
+   "family": "wide-3",
+   "geometry": "wide-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.7,
+    "emotion": 0.4,
+    "establish": 0.85,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "建立",
+    "动作",
+    "大场面"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-018"
+  },
+  "SB-019": {
+   "id": "SB-019",
+   "name": "竖向长格",
+   "name_en": "Vertical Skyscraper Panels",
+   "keywords": [
+    "漫画分镜",
+    "竖向长格",
+    "细长垂直",
+    "高空坠落",
+    "纵向运动"
+   ],
+   "family": "columns-3",
+   "geometry": "columns-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.7,
+    "emotion": 0.4,
+    "establish": 0.7,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "纵向",
+    "动作"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-019"
+  },
+  "SB-020": {
+   "id": "SB-020",
+   "name": "超窄反应格",
+   "name_en": "Ultra-Slim Reaction Insets",
+   "keywords": [
+    "漫画分镜",
+    "超窄反应格",
+    "极速插入",
+    "局部特写",
+    "节奏切换"
+   ],
+   "family": "splash-top-3",
+   "geometry": "splash-top-3",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.5,
+    "action": 0.7,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.6
+   },
+   "beats": [
+    "反应",
+    "节奏",
+    "插入"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-020"
+  },
+  "SB-021": {
+   "id": "SB-021",
+   "name": "眼睛特写链",
+   "name_en": "Eye Close-Up Sequence",
+   "keywords": [
+    "漫画分镜",
+    "眼神特写链",
+    "对峙神态",
+    "心理悬念",
+    "情绪升级"
+   ],
+   "family": "rows-3",
+   "geometry": "rows-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.55,
+    "action": 0.4,
+    "emotion": 0.8,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.6,
+    "comedy": 0.4
+   },
+   "beats": [
+    "情绪",
+    "悬疑",
+    "特写"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-021"
+  },
+  "SB-022": {
+   "id": "SB-022",
+   "name": "手部动作链",
+   "name_en": "Hand Action Sequence",
+   "keywords": [
+    "漫画分镜",
+    "手部动作链",
+    "关键细节",
+    "局部操作",
+    "推进动作"
+   ],
+   "family": "rows-3",
+   "geometry": "rows-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.75,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.5,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "动作",
+    "细节",
+    "特写"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-022"
+  },
+  "SB-023": {
+   "id": "SB-023",
+   "name": "由远到近",
+   "name_en": "Long Shot to Extreme Close-Up",
+   "keywords": [
+    "漫画分镜",
+    "由远到近",
+    "远景到特写",
+    "层层逼近",
+    "紧张感累积"
+   ],
+   "family": "escalate-4",
+   "geometry": "escalate-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.5,
+    "montage": 0.4,
+    "suspense": 0.8,
+    "comedy": 0.4
+   },
+   "beats": [
+    "悬疑",
+    "推进"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-023"
+  },
+  "SB-024": {
+   "id": "SB-024",
+   "name": "由近到远",
+   "name_en": "Extreme Close-Up to Wide Reveal",
+   "keywords": [
+    "漫画分镜",
+    "由近到远",
+    "特写拉远",
+    "揭晓真相",
+    "环境反差"
+   ],
+   "family": "deescalate-4",
+   "geometry": "deescalate-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.8,
+    "montage": 0.4,
+    "suspense": 0.5,
+    "comedy": 0.4
+   },
+   "beats": [
+    "揭示",
+    "转场"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-024"
+  },
+  "SB-025": {
+   "id": "SB-025",
+   "name": "正反打",
+   "name_en": "Shot-Reverse-Shot",
+   "keywords": [
+    "漫画分镜",
+    "正反打",
+    "交替对视",
+    "台词博弈",
+    "对话节奏"
+   ],
+   "family": "grid-2x2",
+   "geometry": "grid-2x2",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.95,
+    "action": 0.35,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.55,
+    "comedy": 0.4
+   },
+   "beats": [
+    "对白",
+    "对峙",
+    "正反打"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-025"
+  },
+  "SB-026": {
+   "id": "SB-026",
+   "name": "三连特写",
+   "name_en": "Triple Rapid Close-Ups",
+   "keywords": [
+    "漫画分镜",
+    "三连特写",
+    "快速切换",
+    "三级递进",
+    "紧凑节拍"
+   ],
+   "family": "rows-3",
+   "geometry": "rows-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.5,
+    "action": 0.55,
+    "emotion": 0.75,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "情绪",
+    "反应",
+    "特写"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-026"
+  },
+  "SB-027": {
+   "id": "SB-027",
+   "name": "动作分解",
+   "name_en": "Action Breakdown",
+   "keywords": [
+    "漫画分镜",
+    "动作分解",
+    "起势过程",
+    "击中反馈",
+    "慢动作解析"
+   ],
+   "family": "rows-4",
+   "geometry": "rows-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.9,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.55,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "动作",
+    "分解"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-027"
+  },
+  "SB-028": {
+   "id": "SB-028",
+   "name": "连续动作残影",
+   "name_en": "Motion Trail Strobe Sequence",
+   "keywords": [
+    "漫画分镜",
+    "连续残影",
+    "多重影像",
+    "高速轨迹",
+    "动能表现"
+   ],
+   "family": "filmstrip-4",
+   "geometry": "filmstrip-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.85,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.6,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "动作",
+    "连续",
+    "残影"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-028"
+  },
+  "SB-029": {
+   "id": "SB-029",
+   "name": "静止重复",
+   "name_en": "Static Panel Repetition",
+   "keywords": [
+    "漫画分镜",
+    "静止重复",
+    "微小变化",
+    "冷面幽默",
+    "尴尬停滞"
+   ],
+   "family": "grid-2x2",
+   "geometry": "grid-2x2",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.5,
+    "suspense": 0.4,
+    "comedy": 0.85
+   },
+   "beats": [
+    "幽默",
+    "静止",
+    "喜剧"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-029"
+  },
+  "SB-030": {
+   "id": "SB-030",
+   "name": "节奏骤停",
+   "name_en": "Sudden Pacing Halt",
+   "keywords": [
+    "漫画分镜",
+    "节奏骤停",
+    "急停空白",
+    "反高潮",
+    "戏剧反差"
+   ],
+   "family": "rows-2",
+   "geometry": "rows-2",
+   "panels": 2,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.6,
+    "establish": 0.5,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.6
+   },
+   "beats": [
+    "反高潮",
+    "转场",
+    "节奏"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-030"
+  },
+  "SB-031": {
+   "id": "SB-031",
+   "name": "爆发后留白",
+   "name_en": "Post-Climax Negative Space",
+   "keywords": [
+    "漫画分镜",
+    "爆发后留白",
+    "余韵留白",
+    "空旷微小",
+    "反差幽默"
+   ],
+   "family": "empty-2",
+   "geometry": "empty-2",
+   "panels": 2,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.8,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.5
+   },
+   "beats": [
+    "情绪",
+    "留白",
+    "余韵"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-031"
+  },
+  "SB-032": {
+   "id": "SB-032",
+   "name": "上下镜像",
+   "name_en": "Vertical Mirroring",
+   "keywords": [
+    "漫画分镜",
+    "上下镜像",
+    "构图对照",
+    "内容反转",
+    "前后对比"
+   ],
+   "family": "mirror-2",
+   "geometry": "mirror-2",
+   "panels": 2,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.6,
+    "establish": 0.4,
+    "montage": 0.7,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "对比",
+    "情绪",
+    "镜像"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-032"
+  },
+  "SB-033": {
+   "id": "SB-033",
+   "name": "左右对峙",
+   "name_en": "Split-Side Confrontation",
+   "keywords": [
+    "漫画分镜",
+    "左右对峙",
+    "两极分化",
+    "视觉对抗",
+    "阵营博弈"
+   ],
+   "family": "split-vertical-2",
+   "geometry": "split-vertical-2",
+   "panels": 2,
+   "fit": {
+    "dialogue": 0.85,
+    "action": 0.5,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.6,
+    "comedy": 0.4
+   },
+   "beats": [
+    "对峙",
+    "对白",
+    "阵营"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-033"
+  },
+  "SB-034": {
+   "id": "SB-034",
+   "name": "双线并行",
+   "name_en": "Dual Parallel Storylines",
+   "keywords": [
+    "漫画分镜",
+    "双线并行",
+    "双线推进",
+    "时空汇聚",
+    "多线叙事"
+   ],
+   "family": "grid-2x2",
+   "geometry": "grid-2x2",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.8,
+    "suspense": 0.6,
+    "comedy": 0.4
+   },
+   "beats": [
+    "蒙太奇",
+    "并行",
+    "双线"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-034"
+  },
+  "SB-035": {
+   "id": "SB-035",
+   "name": "交叉剪辑",
+   "name_en": "Cross-Cutting Parallel Action",
+   "keywords": [
+    "漫画分镜",
+    "交叉剪辑",
+    "两地交替",
+    "悬念紧迫",
+    "误会冲突"
+   ],
+   "family": "grid-2x2",
+   "geometry": "grid-2x2",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.5,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.85,
+    "suspense": 0.7,
+    "comedy": 0.4
+   },
+   "beats": [
+    "蒙太奇",
+    "悬疑",
+    "交叉"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-035"
+  },
+  "SB-036": {
+   "id": "SB-036",
+   "name": "闪回嵌套",
+   "name_en": "Inset Memory Flashback",
+   "keywords": [
+    "漫画分镜",
+    "闪回嵌套",
+    "记忆画格",
+    "画中画",
+    "回忆片段"
+   ],
+   "family": "inset-3",
+   "geometry": "inset-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.6,
+    "establish": 0.4,
+    "montage": 0.6,
+    "suspense": 0.7,
+    "comedy": 0.4
+   },
+   "beats": [
+    "回忆",
+    "转场",
+    "闪回"
+   ],
+   "approx": true,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-036"
+  },
+  "SB-037": {
+   "id": "SB-037",
+   "name": "想象嵌套",
+   "name_en": "Inset Fantasy Bubble",
+   "keywords": [
+    "漫画分镜",
+    "想象嵌套",
+    "脑洞格",
+    "现实幻想",
+    "内心喜剧"
+   ],
+   "family": "inset-3",
+   "geometry": "inset-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.5,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.7
+   },
+   "beats": [
+    "内心",
+    "幽默",
+    "想象"
+   ],
+   "approx": true,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-037"
+  },
+  "SB-038": {
+   "id": "SB-038",
+   "name": "监控屏幕式",
+   "name_en": "Multi-CCTV Security Grid",
+   "keywords": [
+    "漫画分镜",
+    "监控屏幕式",
+    "多视角监视",
+    "悬疑探案",
+    "客观观察"
+   ],
+   "family": "grid-3x2",
+   "geometry": "grid-3x2",
+   "panels": 6,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.6,
+    "suspense": 0.75,
+    "comedy": 0.4
+   },
+   "beats": [
+    "悬疑",
+    "蒙太奇",
+    "多视角"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-038"
+  },
+  "SB-039": {
+   "id": "SB-039",
+   "name": "手机聊天式",
+   "name_en": "Smartphone Chat Overlay",
+   "keywords": [
+    "漫画分镜",
+    "手机聊天式",
+    "社交气泡",
+    "虚拟现实",
+    "现代生活"
+   ],
+   "family": "phone-3",
+   "geometry": "phone-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.8,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.5,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "对白",
+    "现代",
+    "聊天"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-039"
+  },
+  "SB-040": {
+   "id": "SB-040",
+   "name": "档案拼贴式",
+   "name_en": "Detective Case File Collage",
+   "keywords": [
+    "漫画分镜",
+    "档案拼贴式",
+    "线索板",
+    "图文便签",
+    "破案调查"
+   ],
+   "family": "free-5",
+   "geometry": "free-5",
+   "panels": 5,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.7,
+    "suspense": 0.7,
+    "comedy": 0.4
+   },
+   "beats": [
+    "线索",
+    "蒙太奇",
+    "调查"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-040"
+  },
+  "SB-041": {
+   "id": "SB-041",
+   "name": "杂志编辑式",
+   "name_en": "Editorial Magazine Layout",
+   "keywords": [
+    "漫画分镜",
+    "杂志编辑式",
+    "大标题排版",
+    "时尚版面",
+    "图文混排"
+   ],
+   "family": "magazine-4",
+   "geometry": "magazine-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.5,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.7,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "信息",
+    "转场",
+    "编辑"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-041"
+  },
+  "SB-042": {
+   "id": "SB-042",
+   "name": "信息图漫画",
+   "name_en": "Infographic Comic Hybrid",
+   "keywords": [
+    "漫画分镜",
+    "信息图漫画",
+    "图表箭头",
+    "科普漫画",
+    "数据可视化"
+   ],
+   "family": "grid-2x2",
+   "geometry": "grid-2x2",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.5,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.6,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "信息",
+    "科普",
+    "说明"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-042"
+  },
+  "SB-043": {
+   "id": "SB-043",
+   "name": "地图路线式",
+   "name_en": "Map & Trail Journey",
+   "keywords": [
+    "漫画分镜",
+    "地图路线式",
+    "路径引导",
+    "空间位移",
+    "旅行冒险"
+   ],
+   "family": "free-4",
+   "geometry": "free-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.6,
+    "montage": 0.8,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "行进",
+    "转场",
+    "路线"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-043"
+  },
+  "SB-044": {
+   "id": "SB-044",
+   "name": "时间轴式",
+   "name_en": "Chronological Timeline Progression",
+   "keywords": [
+    "漫画分镜",
+    "时间轴式",
+    "早中晚顺序",
+    "时光流转",
+    "阶段演进"
+   ],
+   "family": "rows-4",
+   "geometry": "rows-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.9,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "时间",
+    "蒙太奇",
+    "阶段"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-044"
+  },
+  "SB-045": {
+   "id": "SB-045",
+   "name": "时钟式",
+   "name_en": "Clock Face Radial Layout",
+   "keywords": [
+    "漫画分镜",
+    "时钟式",
+    "表盘刻度",
+    "倒计时",
+    "日周循环"
+   ],
+   "family": "radial-5",
+   "geometry": "radial-5",
+   "panels": 5,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.7,
+    "suspense": 0.7,
+    "comedy": 0.4
+   },
+   "beats": [
+    "时间",
+    "悬疑",
+    "循环"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-045"
+  },
+  "SB-046": {
+   "id": "SB-046",
+   "name": "中心物件式",
+   "name_en": "Central Anchor Prop",
+   "keywords": [
+    "漫画分镜",
+    "中心物件式",
+    "核心道具",
+    "环绕事件",
+    "物象聚焦"
+   ],
+   "family": "center-focus-4",
+   "geometry": "center-focus-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.6,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.7,
+    "comedy": 0.4
+   },
+   "beats": [
+    "线索",
+    "揭示",
+    "物件"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-046"
+  },
+  "SB-047": {
+   "id": "SB-047",
+   "name": "中心人物式",
+   "name_en": "Central Anchor Protagonist",
+   "keywords": [
+    "漫画分镜",
+    "中心人物式",
+    "主角居中",
+    "环视多角",
+    "众星捧月"
+   ],
+   "family": "radial-5",
+   "geometry": "radial-5",
+   "panels": 5,
+   "fit": {
+    "dialogue": 0.7,
+    "action": 0.4,
+    "emotion": 0.6,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "群像",
+    "情绪",
+    "中心"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-047"
+  },
+  "SB-048": {
+   "id": "SB-048",
+   "name": "环形阅读",
+   "name_en": "Circular Loop Narrative",
+   "keywords": [
+    "漫画分镜",
+    "环形阅读",
+    "闭环循环",
+    "首尾相接",
+    "时间莫比乌斯"
+   ],
+   "family": "spiral-5",
+   "geometry": "spiral-5",
+   "panels": 5,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.8,
+    "suspense": 0.6,
+    "comedy": 0.4
+   },
+   "beats": [
+    "循环",
+    "悬疑",
+    "闭环"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-048"
+  },
+  "SB-049": {
+   "id": "SB-049",
+   "name": "上下坠落式",
+   "name_en": "Downward Plunge Flow",
+   "keywords": [
+    "漫画分镜",
+    "上下坠落式",
+    "纵深俯冲",
+    "失重加速",
+    "垂直贯穿"
+   ],
+   "family": "plunge-4",
+   "geometry": "plunge-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.8,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.6,
+    "comedy": 0.4
+   },
+   "beats": [
+    "坠落",
+    "动作",
+    "纵深"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-049"
+  },
+  "SB-050": {
+   "id": "SB-050",
+   "name": "阶梯式",
+   "name_en": "Stepped Staircase Progression",
+   "keywords": [
+    "漫画分镜",
+    "阶梯式",
+    "台阶排版",
+    "层级爬升",
+    "逐级强化"
+   ],
+   "family": "stair-4",
+   "geometry": "stair-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.5,
+    "establish": 0.4,
+    "montage": 0.7,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "推进",
+    "层级",
+    "递进"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-050"
+  },
+  "SB-051": {
+   "id": "SB-051",
+   "name": "波浪式",
+   "name_en": "Undulating Wave Flow",
+   "keywords": [
+    "漫画分镜",
+    "波浪式",
+    "曲线律动",
+    "梦境起伏",
+    "音乐流动"
+   ],
+   "family": "free-4",
+   "geometry": "free-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.75,
+    "establish": 0.4,
+    "montage": 0.6,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "情绪",
+    "梦境",
+    "流动"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-051"
+  },
+  "SB-052": {
+   "id": "SB-052",
+   "name": "自由漂浮式",
+   "name_en": "Free-Floating Unframed Panels",
+   "keywords": [
+    "漫画分镜",
+    "自由漂浮式",
+    "散点排布",
+    "留白飘逸",
+    "视线导引"
+   ],
+   "family": "free-4",
+   "geometry": "free-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.6,
+    "establish": 0.4,
+    "montage": 0.7,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "留白",
+    "转场",
+    "飘逸"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-052"
+  },
+  "SB-053": {
+   "id": "SB-053",
+   "name": "无边框分镜",
+   "name_en": "Frameless Organic Narrative",
+   "keywords": [
+    "漫画分镜",
+    "无边框分镜",
+    "自然破框",
+    "呼吸留白",
+    "有机排版"
+   ],
+   "family": "free-3",
+   "geometry": "free-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.7,
+    "establish": 0.5,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "留白",
+    "情绪",
+    "自然"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-053"
+  },
+  "SB-054": {
+   "id": "SB-054",
+   "name": "白场分镜",
+   "name_en": "Generous Negative Space",
+   "keywords": [
+    "漫画分镜",
+    "白场分镜",
+    "大面积留白",
+    "极简留白",
+    "诗意克制"
+   ],
+   "family": "empty-3",
+   "geometry": "empty-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.8,
+    "establish": 0.5,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "留白",
+    "诗意",
+    "极简"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-054"
+  },
+  "SB-055": {
+   "id": "SB-055",
+   "name": "满版冲击格",
+   "name_en": "Full-Bleed Splash Page",
+   "keywords": [
+    "漫画分镜",
+    "满版冲击格",
+    "全版画格",
+    "视觉爆点",
+    "高潮定格"
+   ],
+   "family": "splash-1",
+   "geometry": "splash-1",
+   "panels": 1,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.8,
+    "emotion": 0.9,
+    "establish": 0.8,
+    "montage": 0.4,
+    "suspense": 0.6,
+    "comedy": 0.4
+   },
+   "beats": [
+    "冲击",
+    "高潮",
+    "满版"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-055"
+  },
+  "SB-056": {
+   "id": "SB-056",
+   "name": "跨页式单页模拟",
+   "name_en": "Simulated Double-Page Spread",
+   "keywords": [
+    "漫画分镜",
+    "跨页式单页",
+    "中央对称",
+    "双页模拟",
+    "史诗宽幅"
+   ],
+   "family": "pagewide-1",
+   "geometry": "pagewide-1",
+   "panels": 1,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.7,
+    "emotion": 0.4,
+    "establish": 0.9,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "跨页",
+    "史诗",
+    "建立"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-056"
+  },
+  "SB-057": {
+   "id": "SB-057",
+   "name": "海报式漫画",
+   "name_en": "Poster-Style Narrative",
+   "keywords": [
+    "漫画分镜",
+    "海报式漫画",
+    "主视觉封面",
+    "画中嵌入",
+    "故事附着"
+   ],
+   "family": "poster-1",
+   "geometry": "poster-1",
+   "panels": 1,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.7,
+    "establish": 0.9,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "海报",
+    "主视觉",
+    "封面"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-057"
+  },
+  "SB-058": {
+   "id": "SB-058",
+   "name": "封面式叙事页",
+   "name_en": "Magazine Cover Narrative",
+   "keywords": [
+    "漫画分镜",
+    "封面式叙事",
+    "杂志头条",
+    "刊头标题",
+    "完整情节"
+   ],
+   "family": "poster-1",
+   "geometry": "poster-1",
+   "panels": 1,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.9,
+    "montage": 0.5,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "封面",
+    "叙事",
+    "标题"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-058"
+  },
+  "SB-059": {
+   "id": "SB-059",
+   "name": "舞台式分镜",
+   "name_en": "Fixed Proscenium Stage",
+   "keywords": [
+    "漫画分镜",
+    "舞台式分镜",
+    "固定机位",
+    "角色进出",
+    "戏剧空间"
+   ],
+   "family": "stage-3",
+   "geometry": "stage-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.8,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.7,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "对白",
+    "舞台",
+    "固定机位"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-059"
+  },
+  "SB-060": {
+   "id": "SB-060",
+   "name": "横卷式分镜",
+   "name_en": "Horizontal Continuous Scroll",
+   "keywords": [
+    "漫画分镜",
+    "横卷式分镜",
+    "长卷漫步",
+    "连续画卷",
+    "步移景异"
+   ],
+   "family": "wide-3",
+   "geometry": "wide-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.8,
+    "montage": 0.7,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "长卷",
+    "行进",
+    "横移"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-060"
+  },
+  "SB-061": {
+   "id": "SB-061",
+   "name": "竖卷式分镜",
+   "name_en": "Vertical Hanging Scroll",
+   "keywords": [
+    "漫画分镜",
+    "竖卷式分镜",
+    "立轴画幅",
+    "垂直流转",
+    "古风长卷"
+   ],
+   "family": "columns-3",
+   "geometry": "columns-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.6,
+    "establish": 0.8,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "长卷",
+    "古风",
+    "立轴"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-061"
+  },
+  "SB-062": {
+   "id": "SB-062",
+   "name": "镜面反射式",
+   "name_en": "Mirror Reflection Dualism",
+   "keywords": [
+    "漫画分镜",
+    "镜面反射式",
+    "倒影双重视角",
+    "双重人格",
+    "心理对照"
+   ],
+   "family": "mirror-2",
+   "geometry": "mirror-2",
+   "panels": 2,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.7,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.6,
+    "comedy": 0.4
+   },
+   "beats": [
+    "对比",
+    "心理",
+    "倒影"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-062"
+  },
+  "SB-063": {
+   "id": "SB-063",
+   "name": "窗口式分镜",
+   "name_en": "Architectural Window Framing",
+   "keywords": [
+    "漫画分镜",
+    "窗口式分镜",
+    "现实画框",
+    "门窗借景",
+    "空间切割"
+   ],
+   "family": "window-3",
+   "geometry": "window-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.7,
+    "montage": 0.4,
+    "suspense": 0.7,
+    "comedy": 0.4
+   },
+   "beats": [
+    "窥视",
+    "悬疑",
+    "框景"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-063"
+  },
+  "SB-064": {
+   "id": "SB-064",
+   "name": "物件遮挡式",
+   "name_en": "Foreground Silhouette Framing",
+   "keywords": [
+    "漫画分镜",
+    "物件遮挡式",
+    "前景遮挡",
+    "自然隔断",
+    "纵深分层"
+   ],
+   "family": "inset-3",
+   "geometry": "inset-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.4,
+    "establish": 0.7,
+    "montage": 0.4,
+    "suspense": 0.7,
+    "comedy": 0.4
+   },
+   "beats": [
+    "遮挡",
+    "悬疑",
+    "纵深"
+   ],
+   "approx": true,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-064"
+  },
+  "SB-065": {
+   "id": "SB-065",
+   "name": "文字主导式",
+   "name_en": "Typographic Scaffold Layout",
+   "keywords": [
+    "漫画分镜",
+    "文字主导式",
+    "字形骨架",
+    "拟声构架",
+    "图文共构"
+   ],
+   "family": "type-3",
+   "geometry": "type-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.5,
+    "action": 0.5,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.6,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "音效",
+    "文字",
+    "排版"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-065"
+  },
+  "SB-066": {
+   "id": "SB-066",
+   "name": "音效主导式",
+   "name_en": "Onomatopoeia Trail",
+   "keywords": [
+    "漫画分镜",
+    "音效主导式",
+    "巨大声效",
+    "动势贯通",
+    "冲击力"
+   ],
+   "family": "type-3",
+   "geometry": "type-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.8,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.5,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "音效",
+    "动作",
+    "冲击"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-066"
+  },
+  "SB-067": {
+   "id": "SB-067",
+   "name": "色块主导式",
+   "name_en": "Color Block Panel Partitions",
+   "keywords": [
+    "漫画分镜",
+    "色块主导式",
+    "纯色分隔",
+    "情绪色彩",
+    "平面设计感"
+   ],
+   "family": "grid-2x2",
+   "geometry": "grid-2x2",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.4,
+    "emotion": 0.7,
+    "establish": 0.4,
+    "montage": 0.6,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "情绪",
+    "色块",
+    "平面"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-067"
+  },
+  "SB-068": {
+   "id": "SB-068",
+   "name": "几何分割式",
+   "name_en": "Non-Rectangular Geometric Mosaic",
+   "keywords": [
+    "漫画分镜",
+    "几何分割式",
+    "非矩形面板",
+    "圆形三角",
+    "视觉律动"
+   ],
+   "family": "geo-5",
+   "geometry": "geo-5",
+   "panels": 5,
+   "fit": {
+    "dialogue": 0.4,
+    "action": 0.7,
+    "emotion": 0.4,
+    "establish": 0.4,
+    "montage": 0.6,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "冲击",
+    "几何",
+    "节奏"
+   ],
+   "approx": true,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-068"
+  },
+  "SB-069": {
+   "id": "SB-069",
+   "name": "上下两格生活漫画分镜",
+   "name_en": "Two-Panel Vertical Lifestyle Comic Storyboard",
+   "keywords": [
+    "竖版上下两格",
+    "等大纵向排列",
+    "上图下文结构",
+    "80%场景插画",
+    "20%横向文字栏",
+    "阿拉伯数字编号",
+    "细横线分隔",
+    "统一边距与比例",
+    "独立生活场景",
+    "规整简洁无装饰"
+   ],
+   "family": "caption-2",
+   "geometry": "caption-2",
+   "panels": 2,
+   "fit": {
+    "dialogue": 0.6,
+    "action": 0.4,
+    "emotion": 0.5,
+    "establish": 0.4,
+    "montage": 0.7,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "日常",
+    "说明",
+    "上图下文"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-069"
+  },
+  "SB-070": {
+   "id": "SB-070",
+   "name": "上下四格生活漫画分镜",
+   "name_en": "Four-Panel Vertical Lifestyle Comic Storyboard",
+   "keywords": [
+    "竖版上下四格",
+    "等大纵向排列",
+    "上图下文结构",
+    "80%场景插画",
+    "20%横向文字栏",
+    "阿拉伯数字编号",
+    "细横线分隔",
+    "统一边距与比例",
+    "独立生活场景",
+    "规整简洁无装饰"
+   ],
+   "family": "caption-4",
+   "geometry": "caption-4",
+   "panels": 4,
+   "fit": {
+    "dialogue": 0.6,
+    "action": 0.4,
+    "emotion": 0.5,
+    "establish": 0.4,
+    "montage": 0.8,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "日常",
+    "说明",
+    "蒙太奇"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-070"
+  },
+  "SB-071": {
+   "id": "SB-071",
+   "name": "上下三格生活漫画分镜",
+   "name_en": "Three-Panel Vertical Lifestyle Comic Storyboard",
+   "keywords": [
+    "竖版上下三格",
+    "等大纵向排列",
+    "上图下文结构",
+    "80%场景插画",
+    "20%横向文字栏",
+    "阿拉伯数字编号",
+    "细横线分隔",
+    "统一边距与比例",
+    "独立生活场景",
+    "规整简洁无装饰"
+   ],
+   "family": "caption-3",
+   "geometry": "caption-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.6,
+    "action": 0.4,
+    "emotion": 0.5,
+    "establish": 0.4,
+    "montage": 0.7,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "日常",
+    "说明",
+    "上图下文"
+   ],
+   "approx": false,
+   "native": false,
+   "reference": "handraw-style LAYOUTS SB-071"
+  },
+  "WB-001": {
+   "id": "WB-001",
+   "name": "原生条漫 · 竖格",
+   "name_en": "Native Webtoon Single Panel",
+   "keywords": [],
+   "family": "webtoon-1",
+   "geometry": "webtoon-1",
+   "panels": 1,
+   "fit": {
+    "dialogue": 0.5,
+    "action": 0.8,
+    "emotion": 0.9,
+    "establish": 0.7,
+    "montage": 0.4,
+    "suspense": 0.6,
+    "comedy": 0.4
+   },
+   "beats": [
+    "条漫",
+    "情绪",
+    "冲击",
+    "转场"
+   ],
+   "approx": false,
+   "native": true,
+   "reference": "handraw-style LAYOUTS WB-001"
+  },
+  "WB-002": {
+   "id": "WB-002",
+   "name": "原生条漫 · 双格",
+   "name_en": "Native Webtoon Two Panels",
+   "keywords": [],
+   "family": "webtoon-2",
+   "geometry": "webtoon-2",
+   "panels": 2,
+   "fit": {
+    "dialogue": 0.8,
+    "action": 0.5,
+    "emotion": 0.7,
+    "establish": 0.4,
+    "montage": 0.4,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "条漫",
+    "对白",
+    "情绪"
+   ],
+   "approx": false,
+   "native": true,
+   "reference": "handraw-style LAYOUTS WB-002"
+  },
+  "WB-003": {
+   "id": "WB-003",
+   "name": "原生条漫 · 三格",
+   "name_en": "Native Webtoon Three Panels",
+   "keywords": [],
+   "family": "webtoon-3",
+   "geometry": "webtoon-3",
+   "panels": 3,
+   "fit": {
+    "dialogue": 0.75,
+    "action": 0.4,
+    "emotion": 0.55,
+    "establish": 0.4,
+    "montage": 0.6,
+    "suspense": 0.4,
+    "comedy": 0.4
+   },
+   "beats": [
+    "条漫",
+    "对白",
+    "连续"
+   ],
+   "approx": false,
+   "native": true,
+   "reference": "handraw-style LAYOUTS WB-003"
+  }
+ }
+}

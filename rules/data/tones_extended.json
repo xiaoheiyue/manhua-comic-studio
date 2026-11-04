@@ -1,0 +1,218 @@
+[
+  {
+    "id": "T-17",
+    "name_zh": "超低调",
+    "name_en": "Ultra Low-key",
+    "category": "key",
+    "category_zh": "明暗阶调",
+    "desc_zh": "几乎全暗，只有轮廓与局部高光，压迫、神秘、藏信息",
+    "desc_en": "Almost entirely dark, only rim light and small highlights; oppressive and mysterious"
+  },
+  {
+    "id": "T-18",
+    "name_zh": "极暗剪影",
+    "name_en": "Near-Silhouette",
+    "category": "key",
+    "category_zh": "明暗阶调",
+    "desc_zh": "主体压成近乎纯黑的剪影，背景保留微光，强调轮廓与姿态",
+    "desc_en": "Subject nearly pure black silhouette against faint background light; shape and pose first"
+  },
+  {
+    "id": "T-19",
+    "name_zh": "超软调",
+    "name_en": "Ultra Soft",
+    "category": "contrast",
+    "category_zh": "反差过渡",
+    "desc_zh": "几乎没有硬边，雾面柔光，明暗过渡绵密，适合回忆与梦境",
+    "desc_en": "No hard edges, misty soft light, dense tonal transitions; memory and dream"
+  },
+  {
+    "id": "T-20",
+    "name_zh": "超硬调",
+    "name_en": "Ultra Hard",
+    "category": "contrast",
+    "category_zh": "反差过渡",
+    "desc_zh": "刀切式明暗分界，硬边投影，黑白几乎直接相接",
+    "desc_en": "Knife-edge light division, hard cast shadows, near-binary black and white"
+  },
+  {
+    "id": "T-21",
+    "name_zh": "冷雾调",
+    "name_en": "Cold Mist",
+    "category": "atmosphere",
+    "category_zh": "氛围阶调",
+    "desc_zh": "青灰雾面，冷光穿透，空气有湿度与距离感",
+    "desc_en": "Blue-grey mist, cold light cutting through, humid air and distance"
+  },
+  {
+    "id": "T-22",
+    "name_zh": "暖雾调",
+    "name_en": "Warm Mist",
+    "category": "atmosphere",
+    "category_zh": "氛围阶调",
+    "desc_zh": "米金雾面，暖光漫射，柔和但有颗粒",
+    "desc_en": "Cream-gold mist, diffused warm light, soft but grainy"
+  },
+  {
+    "id": "T-23",
+    "name_zh": "雨夜调",
+    "name_en": "Rainy Night",
+    "category": "atmosphere",
+    "category_zh": "氛围阶调",
+    "desc_zh": "湿冷反光、雨幕与积水倒影，暗部偏青蓝",
+    "desc_en": "Wet cold reflections, rain veils and puddles, blue-green shadows"
+  },
+  {
+    "id": "T-24",
+    "name_zh": "月夜调",
+    "name_en": "Moonlit Night",
+    "category": "atmosphere",
+    "category_zh": "氛围阶调",
+    "desc_zh": "蓝银月光，深蓝暗部，轮廓清楚但细节少",
+    "desc_en": "Blue-silver moonlight, deep blue shadows, clear silhouette but sparse detail"
+  },
+  {
+    "id": "T-25",
+    "name_zh": "霓虹调",
+    "name_en": "Neon Noir",
+    "category": "atmosphere",
+    "category_zh": "氛围阶调",
+    "desc_zh": "青品红霓虹、湿街反光、彩色边缘光，赛博/夜城",
+    "desc_en": "Cyan-magenta neon, wet street reflections, colored rim light; cyber night city"
+  },
+  {
+    "id": "T-26",
+    "name_zh": "煤油灯调",
+    "name_en": "Oil-Lamp Glow",
+    "category": "atmosphere",
+    "category_zh": "氛围阶调",
+    "desc_zh": "橙黄局部光，大面积黑，光源小且不稳定，旧时代室内",
+    "desc_en": "Small flickering amber light, vast darkness; old interior"
+  },
+  {
+    "id": "T-27",
+    "name_zh": "晨光调",
+    "name_en": "Morning Light",
+    "category": "light",
+    "category_zh": "光线方向",
+    "desc_zh": "低角度暖白晨光，长影，空气清透",
+    "desc_en": "Low warm-white morning light, long shadows, clear air"
+  },
+  {
+    "id": "T-28",
+    "name_zh": "黄昏调",
+    "name_en": "Dusk",
+    "category": "light",
+    "category_zh": "光线方向",
+    "desc_zh": "金橙余晖，紫灰暗部，轮廓被暖边光勾出",
+    "desc_en": "Golden-orange afterglow, purple-grey shadows, warm rim light"
+  },
+  {
+    "id": "T-29",
+    "name_zh": "阴天调",
+    "name_en": "Overcast",
+    "category": "light",
+    "category_zh": "光线方向",
+    "desc_zh": "均匀灰光，低对比，没有明确投影，冷清写实",
+    "desc_en": "Even grey light, low contrast, no clear shadows; cold realism"
+  },
+  {
+    "id": "T-30",
+    "name_zh": "室内暖光",
+    "name_en": "Warm Interior",
+    "category": "light",
+    "category_zh": "光线方向",
+    "desc_zh": "钨丝灯暖黄，暗角明显，墙面与皮肤偏橙",
+    "desc_en": "Tungsten warmth, strong vignette, orange skin and walls"
+  },
+  {
+    "id": "T-31",
+    "name_zh": "逆光调",
+    "name_en": "Backlight",
+    "category": "light",
+    "category_zh": "光线方向",
+    "desc_zh": "光源在主体背后，边缘光清楚，背景局部过曝",
+    "desc_en": "Light behind subject, clear rim, blown background highlights"
+  },
+  {
+    "id": "T-32",
+    "name_zh": "侧逆光",
+    "name_en": "Rim Side Light",
+    "category": "light",
+    "category_zh": "光线方向",
+    "desc_zh": "单侧轮廓光，明暗分界沿鼻梁/肩线切开",
+    "desc_en": "One-sided rim light, tonal division along nose bridge and shoulder"
+  },
+  {
+    "id": "T-33",
+    "name_zh": "顶光调",
+    "name_en": "Top Light",
+    "category": "light",
+    "category_zh": "光线方向",
+    "desc_zh": "顶光压眼，眼窝与下颌投影重，审讯/恐怖感",
+    "desc_en": "Overhead light pressing the eyes, heavy eye-socket and jaw shadows; interrogation"
+  },
+  {
+    "id": "T-34",
+    "name_zh": "底光调",
+    "name_en": "Underlight",
+    "category": "light",
+    "category_zh": "光线方向",
+    "desc_zh": "从下往上打光，面部阴影反转，诡异、非自然",
+    "desc_en": "Light from below, inverted facial shadows; eerie and unnatural"
+  },
+  {
+    "id": "T-35",
+    "name_zh": "伦勃朗光",
+    "name_en": "Rembrandt Light",
+    "category": "light",
+    "category_zh": "光线方向",
+    "desc_zh": "四分之三侧光，暗侧脸颊出现三角光，古典肖像",
+    "desc_en": "Three-quarter key, triangle of light on the shadow cheek; classical portrait"
+  },
+  {
+    "id": "T-36",
+    "name_zh": "局部光",
+    "name_en": "Practical Pool",
+    "category": "light",
+    "category_zh": "光线方向",
+    "desc_zh": "只亮主体或关键物件，环境沉入黑，强指向性",
+    "desc_en": "Only subject or key object lit, environment sinks into black; strongly directional"
+  },
+  {
+    "id": "T-37",
+    "name_zh": "复古褪色调",
+    "name_en": "Faded Vintage",
+    "category": "color",
+    "category_zh": "色彩阶调",
+    "desc_zh": "低饱和暖灰，黑位抬升，像旧照片/旧印刷",
+    "desc_en": "Desaturated warm grey, lifted blacks; old photo or old print"
+  },
+  {
+    "id": "T-38",
+    "name_zh": "粗颗粒调",
+    "name_en": "Coarse Grain",
+    "category": "color",
+    "category_zh": "色彩阶调",
+    "desc_zh": "高颗粒胶片，粗粝边缘，暗部有噪点但结构清楚",
+    "desc_en": "Heavy film grain, coarse edges, noisy shadows with clear structure"
+  },
+  {
+    "id": "T-39",
+    "name_zh": "低饱和调",
+    "name_en": "Desaturated",
+    "category": "color",
+    "category_zh": "色彩阶调",
+    "desc_zh": "颜色克制、灰调为主，只保留一个重点色",
+    "desc_en": "Restrained greyish palette with one accent color"
+  },
+  {
+    "id": "T-40",
+    "name_zh": "高饱和调",
+    "name_en": "High Saturation",
+    "category": "color",
+    "category_zh": "色彩阶调",
+    "desc_zh": "高纯度、强对比，波普/海报式色彩，适合喜剧与冲击画面",
+    "desc_en": "High purity, strong contrast, pop/poster color; comedy and impact"
+  }
+]

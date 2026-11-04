@@ -1,0 +1,78 @@
+{
+  "version": "1.0.0",
+  "note": "分镜可拍性与校验的机器可读规则。程序由 comicgen/rules.py 读取，director.py 负责执行。",
+  "description": {
+    "min_chars": 18,
+    "target_min_chars": 28,
+    "max_chars": 110,
+    "camera_words": [
+      "平视", "俯视", "仰视", "斜侧", "过肩", "主观", "背影",
+      "远景", "全景", "中景", "近景", "特写", "俯拍", "仰拍", "大特写", "微距"
+    ],
+    "meta_patterns": [
+      "作为视觉主体", "出现在画面中", "（对话密集", "（有一句台词",
+      "（无台词", "（人物反应", "（说话人近景", "（听者反应近景",
+      "（手部或物件特写", "（同一场景的另一角度"
+    ],
+    "forbidden_phrases": [
+      "她想", "他想", "她觉得", "他觉得", "仿佛", "好像", "像是",
+      "心里", "心情", "心里想", "感觉", "似乎"
+    ],
+    "slots": ["谁", "在哪", "做什么", "视线表情", "前后景", "光"]
+  },
+  "cast_policy": {
+    "max_characters": 3,
+    "dialogue_prefer_solo": true,
+    "two_shot_types": ["远景", "全景", "中景"],
+    "three_shot_types": ["远景", "全景", "中景"],
+    "two_shot_max_speech": 1,
+    "multi_shot_max_speech": 1,
+    "forbid_three_or_more": false,
+    "split_above": 3,
+    "detail_shot_character_policy": "remove"
+  },
+  "dialogue": {
+    "max_per_panel": 3,
+    "max_chars": 20,
+    "narration_max_chars": 24,
+    "sfx_max_chars": 6,
+    "empty_speaker_policy": "offscreen",
+    "speaker_must_be_visible_or_offscreen": true
+  },
+  "bubble": {
+    "slot_side_must_match": true,
+    "max_speech_per_panel": 3,
+    "anchor_y_by_type": {
+      "特写": 0.30,
+      "近景": 0.28,
+      "中景": 0.30,
+      "全景": 0.32,
+      "远景": 0.34
+    },
+    "anchor_x_by_side": {"左": 0.28, "右": 0.72, "中": 0.50},
+    "tail_none_for": ["narration", "sfx", "offscreen"],
+    "reading_order": ["top", "mid", "bottom"]
+  },
+  "validation": {
+    "max_same_shot_run": 2,
+    "max_same_camera_run": 2,
+    "closeup_min_ratio": 0.24,
+    "silent_ratio_min": 0.12,
+    "silent_ratio_max": 0.40,
+    "duplicate_similarity": 0.88,
+    "max_dialogue_run": 3
+  },
+  "two_shot_policy": {
+    "enabled": true,
+    "split_on_speech_over": 1,
+    "keep_shot_types": ["远景", "全景", "中景"],
+    "note": "双人格台词超过阈值时只告警不自动拆，避免破坏剧情顺序；需要人工或导演优化处理。"
+  },
+  "multi_shot_policy": {
+    "enabled": true,
+    "max_characters": 3,
+    "max_speech": 1,
+    "keep_shot_types": ["远景", "全景", "中景"],
+    "note": "3 人保留同框；4 人拆 3+1/2+2；Qwen 实测 4 人会多画。"
+  }
+}
