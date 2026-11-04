@@ -1,6 +1,6 @@
 # 漫画生成器 · 运行环境依赖
-# Python 3.10 ~ 3.12（推荐 3.12）
-# 安装： python -m pip install -r requirements.txt
+# Python 3.12（必须；代码用了 3.12 的多行 f-string 语法，3.11 及以下会 SyntaxError）
+# 安装： uv venv .venv（读取 .python-version）+ uv pip install -r requirements.txt
 
 # ---- Web 后端 ----
 fastapi>=0.115

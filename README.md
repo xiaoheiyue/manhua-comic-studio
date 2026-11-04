@@ -7,7 +7,7 @@
 本地 ComfyUI · Z-Image-Turbo / Qwen-Image-2.1 · 365 画风 · 74 种分页版式 · 气泡自动排版 · PDF / ZIP 导出
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](requirements.txt)
+[![Python](https://img.shields.io/badge/python-3.12-blue.svg)](requirements.txt)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)](#快速开始)
 [![Local](https://img.shields.io/badge/inference-100%25%20local-green.svg)](#为什么是本地)
 
@@ -87,8 +87,8 @@ source .venv/bin/activate
 ```
 
 > **Python 版本由 uv 管理**：仓库根目录的 `.python-version` 固定为 `3.12`。
-> `uv venv` 会读取它，自动下载 CPython 3.12（不需要系统预装），并在 `.venv/` 建环境；
-> 想换版本就 `uv venv .venv --python 3.11`，`.venv/` 已 gitignore。
+> `uv venv` 会读取它，自动下载 CPython 3.12（不需要系统预装），并在 `.venv/` 建环境。
+> **不要降到 3.11 及以下**：代码用了 3.12 的多行 f-string 语法，低版本会直接 `SyntaxError`。
 > 依赖装进 `.venv` 后，`start.ps1` / `start.sh` 会自动优先使用它。
 
 ### 2. 配密钥
