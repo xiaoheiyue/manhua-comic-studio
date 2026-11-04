@@ -7,6 +7,7 @@
 本地 ComfyUI · Z-Image-Turbo / Qwen-Image-2.1 · 365 画风 · 74 种分页版式 · 气泡自动排版 · PDF / ZIP 导出
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![CI](https://github.com/xiaoheiyue/manhua-comic-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaoheiyue/manhua-comic-studio/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.12-blue.svg)](requirements.txt)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)](#快速开始)
 [![Local](https://img.shields.io/badge/inference-100%25%20local-green.svg)](#为什么是本地)

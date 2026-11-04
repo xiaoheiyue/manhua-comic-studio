@@ -20,6 +20,10 @@
 ### 修复
 
 - `requirements.txt` 中一行被字面 `\n` 吞掉，导致 `scipy / mediapipe / opencv-python` 实际未被安装
+- `.gitignore` 的 `data/`、`screenshots/` 未锚定根目录，误伤 `rules/data/*.json`（程序真正读取的规则数据）
+  与 `docs/assets/screenshots/*.png`（README 配图），干净 clone 会缺版式/规则
+- `data/pose_library/`（骨架库，运行与自检必需）未随仓库分发
+- `comicgen/pipeline.py` 使用 `list[Any]` 但未导入 `Any`（ruff F821）
 - 文档中指向已移动文件的链接（需求说明书、条漫规则）
 
 ### 变更
