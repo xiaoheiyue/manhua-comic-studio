@@ -1,0 +1,52 @@
+name: 功能建议
+description: 想要的新能力 / 改进
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请先看 [ROADMAP](../blob/main/ROADMAP.md)，避免和已有计划重复。
+
+  - type: textarea
+    id: scenario
+    attributes:
+      label: 你的场景
+      description: 你在做什么作品、卡在哪一步、现在怎么绕过去的。
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 你希望的方案
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 你试过的替代方案
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 涉及模块
+      multiple: true
+      options:
+        - 安装 / 部署
+        - 文本分析 / 分镜
+        - 角色一致性
+        - 画风 / 版式
+        - 气泡 / 排版
+        - 导出
+        - 前端界面
+        - 文档
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: pr
+    attributes:
+      label: 是否愿意提交 PR
+      options:
+        - label: 愿意，我可以自己实现
+        - label: 愿意，但需要指路

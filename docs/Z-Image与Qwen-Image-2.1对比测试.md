@@ -142,8 +142,8 @@ Qwen Image Edit：
 
 ## 8. 文件
 
-- 工作流：[Qwen-Image-2.1](comfy_workflows/Qwen-Image-2.1)
-- 工作流说明：[Qwen-Image-2.1 本地工作流](docs/Qwen-Image-2.1本地工作流.md)
+- 工作流：[Qwen-Image-2.1](../comfy_workflows/Qwen-Image-2.1)
+- 工作流说明：[Qwen-Image-2.1 本地工作流](Qwen-Image-2.1本地工作流.md)
 - 后端实现：`comicgen/qwencomic.py`、`comicgen/qwenedit.py`
 
 

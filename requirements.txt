@@ -1,5 +1,6 @@
-# 运行环境依赖
-# 安装：env\Scripts\python.exe -m pip install -r requirements.txt
+# 漫画生成器 · 运行环境依赖
+# Python 3.10 ~ 3.12（推荐 3.12）
+# 安装： python -m pip install -r requirements.txt
 
 # ---- Web 后端 ----
 fastapi>=0.115
@@ -12,10 +13,13 @@ pillow>=10.0
 numpy>=1.26
 chardet>=5.2
 
-# ---- 姿态：真人照片 -> OpenPose 骨架 ----\nscipy>=1.12\nmediapipe==0.10.21\nopencv-python>=4.11,<5\n\n# ---- 导出（PDF 合成）----
+# ---- 姿态：真人照片 / 骨架提取（缺 mediapipe 时姿态相关功能不可用，其余功能正常）----
+scipy>=1.12
+mediapipe>=0.10.21
+opencv-python>=4.11
+
+# ---- 导出（PDF 合成）----
 reportlab>=4.0
 
 # ---- 可选：界面截图脚本（shots.py）----
 # playwright>=1.40
-
-

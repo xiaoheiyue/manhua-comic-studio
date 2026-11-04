@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: 语法检查
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install ruff
+        run: python -m pip install --upgrade ruff
+      - name: Ruff (syntax / undefined names)
+        run: ruff check --select E9,F63,F7,F82 --output-format=github .
+
+  selftest:
+    name: 离线自检（不花 token / 不需要 GPU）
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: 安装中文字体（PDF / 气泡排版需要）
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+      - name: 安装依赖
+        run: python -m pip install -r requirements.txt
+      - name: 运行离线自检
+        run: python selftest.py
+      - name: 上传自检产物（失败时）
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selftest-output
+          path: |
+            outputs/
+            data/logs/
+          if-no-files-found: ignore
+          retention-days: 7

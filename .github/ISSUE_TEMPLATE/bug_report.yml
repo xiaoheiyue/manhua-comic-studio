@@ -1,0 +1,77 @@
+name: Bug 报告
+description: 跑不起来 / 出图异常 / 界面报错
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        先自查三件事，能省很多来回：
+        1. `python selftest.py` 是否全绿？
+        2. ComfyUI 的 `http://127.0.0.1:8188` 能否打开？
+        3. 界面「设置 → 图像工作流 → 检查工作流」是否通过？
+
+  - type: textarea
+    id: what
+    attributes:
+      label: 发生了什么
+      description: 一句话说清现象；有报错就贴原文。
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 上传 xxx.txt
+        2. 点「一键全流程」
+        3. 第 5 步第 3 格开始报错
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望结果
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: 系统
+      options: [Windows 11, Windows 10, Linux, macOS, 其他]
+    validations:
+      required: true
+
+  - type: input
+    id: gpu
+    attributes:
+      label: 显卡 / 显存
+      placeholder: RTX 4060 Ti 8GB
+    validations:
+      required: true
+
+  - type: input
+    id: versions
+    attributes:
+      label: 版本信息
+      description: Python、ComfyUI、本项目 commit、IMAGE_FAMILY
+      placeholder: Python 3.12 / ComfyUI 0.3.x / commit abc1234 / zimage
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志
+      description: 贴 `data/logs/` 里的相关片段，或服务端控制台输出。**请先删掉密钥与个人信息。**
+      render: text
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 自查
+      options:
+        - label: 已运行 `python selftest.py` 并全绿
+        - label: 已搜索过现有 Issue
+        - label: 日志里没有包含我的 API Key

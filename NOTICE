@@ -1,0 +1,31 @@
+Manhua Comic Studio（漫画生成器）
+Copyright 2026 Manhua Comic Studio contributors
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+It integrates the following third-party works. Model weights are NOT bundled with
+this repository; download them yourself from the official sources listed in
+docs/模型与依赖清单.md.
+
+- handraw-style (365 画风 / 170 版式 / 36 主题色)
+  Copyright (c) 2026 yang0
+  https://github.com/yang0/handraw-style
+  Licensed under the MIT License with an attribution requirement. The original
+  copyright notice and license text are kept in third_party/handraw-style-LICENSE.txt,
+  and credit is displayed in README.md and in the application UI.
+
+- Z-Image / Z-Image-Turbo
+  Copyright Alibaba Tongyi Lab (Tongyi-MAI)
+  https://github.com/Tongyi-MAI/Z-Image
+  Licensed under the Apache License, Version 2.0.
+
+- Qwen-Image
+  Copyright Alibaba Qwen Team
+  https://github.com/QwenLM/Qwen-Image
+  Licensed under the Apache License, Version 2.0.
+
+- ComfyUI (optional, external service)
+  Copyright Comfy Org and contributors
+  https://github.com/comfyanonymous/ComfyUI
+  Licensed under GPL-3.0. ComfyUI runs as a separate program and is accessed over
+  HTTP; it is not distributed with, linked into, or bundled by this project.

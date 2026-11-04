@@ -79,7 +79,7 @@ env\Scripts\python.exe apply_rules.py <工程id> --apply    # 写回（自动备
 7. **角色参考工作流选型** → [08_角色参考工作流选型.md](08_角色参考工作流选型.md)（Flux Kontext / FLUX.2 Klein / 8GB）
 
 平台级条漫/页漫规范（画布、转场配比、gutter、悬念位置、R1–R30）在
-[../条漫叙事与分镜规则.md](../条漫叙事与分镜规则.md)；本文档不重复。
+[../docs/条漫叙事与分镜规则.md](../docs/条漫叙事与分镜规则.md)；本文档不重复。
 
 ---
 
