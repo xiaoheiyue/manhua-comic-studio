@@ -1,6 +1,6 @@
 ﻿# 启动脚本（Windows）
 # 用法： .\start.ps1
-# 会优先使用 .venv 里的 Python；没有就退回系统 python
+# 优先用 uv 创建的 .venv；env/ 是作者本地旧环境（不随仓库分发），仅作兼容
 Set-Location (Split-Path -Parent $PSScriptRoot)
 
 if (Test-Path ".venv\Scripts\python.exe") {

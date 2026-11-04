@@ -1,11 +1,11 @@
 blank_issues_enabled: true
 contact_links:
   - name: 安装与模型问题
-    url: https://github.com/your-name/manhua-comic-studio/blob/main/docs/模型与依赖清单.md
+    url: https://github.com/xiaoheiyue/manhua-comic-studio/blob/main/docs/模型与依赖清单.md
     about: 模型放哪、从哪下、ComfyUI 怎么起
   - name: 使用手册
-    url: https://github.com/your-name/manhua-comic-studio/blob/main/docs/手册_完整版.md
+    url: https://github.com/xiaoheiyue/manhua-comic-studio/blob/main/docs/手册_完整版.md
     about: 配置项、五阶段、常见问题
   - name: 内测群 / 交流
-    url: https://github.com/your-name/manhua-comic-studio/blob/main/docs/社区/README.md
+    url: https://github.com/xiaoheiyue/manhua-comic-studio/blob/main/docs/社区/README.md
     about: 群公告、提问方式、贡献入口

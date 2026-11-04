@@ -5,11 +5,13 @@
 ## 一、先跑起来
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-Copy-Item .env.example .env      # 填 DEEPSEEK_API_KEY（只跑自检可以不填）
-python selftest.py              # 必须全绿
+# 安装 uv（一次），然后用它建 Python 3.12 环境
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+uv venv .venv                 # 读取 .python-version，自动下载 Python 3.12
+uv pip install -r requirements.txt
+Copy-Item .env.example .env   # 填 DEEPSEEK_API_KEY（只跑自检可以不填）
+
+.\.venv\Scripts\python.exe selftest.py   # 必须全绿
 ```
 
 没有 GPU / 没有 ComfyUI 也能贡献：`selftest.py` 是离线全链路自检，不调用真实模型。

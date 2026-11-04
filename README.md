@@ -54,26 +54,42 @@
 
 ### 0. 你需要
 
-- Python 3.10–3.12
+- [uv](https://docs.astral.sh/uv/)（用它装 Python 3.12 和依赖；下面一条命令即可安装，不用预装 Python）
 - 一块 8GB 以上显存的 GPU（int8 量化，1088×1216 约 20 秒/张）
 - 本地 [ComfyUI](https://github.com/comfyanonymous/ComfyUI) + 模型权重（**不随仓库分发**，见 [模型与依赖清单](docs/模型与依赖清单.md)）
 - 一个 DeepSeek API Key（或任何 OpenAI 兼容端点）
 
-### 1. 装依赖
+> **仓库里没有什么**：`env/`、`node_modules/`、模型权重、`data/`、`outputs/` 都不在仓库里。
+> 前两个是本地运行环境，后三个是运行产物，全部写进了 `.gitignore`；克隆下来只有一个干净的源码目录。
+
+### 1. 用 uv 装环境与依赖
 
 ```powershell
-# Windows
-python -m venv .venv
+# 1) 安装 uv（只需一次）
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# 2) 创建虚拟环境：uv 读取 .python-version，自动下载并使用 Python 3.12
+uv venv .venv
+
+# 3) 安装依赖
+uv pip install -r requirements.txt
+
+# 4) 激活（可选；后面的命令也可以直接写 .venv\Scripts\python.exe）
 .\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
 ```
 
 ```bash
 # macOS / Linux
-python3 -m venv .venv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv venv .venv
+uv pip install -r requirements.txt
 source .venv/bin/activate
-python -m pip install -r requirements.txt
 ```
+
+> **Python 版本由 uv 管理**：仓库根目录的 `.python-version` 固定为 `3.12`。
+> `uv venv` 会读取它，自动下载 CPython 3.12（不需要系统预装），并在 `.venv/` 建环境；
+> 想换版本就 `uv venv .venv --python 3.11`，`.venv/` 已 gitignore。
+> 依赖装进 `.venv` 后，`start.ps1` / `start.sh` 会自动优先使用它。
 
 ### 2. 配密钥
 
@@ -94,6 +110,8 @@ powershell -ExecutionPolicy Bypass -File scripts\fetch_handraw_style.ps1
 
 ```powershell
 python server.py
+# 或（自动优先使用 .venv 里的 Python）
+.\start.ps1
 ```
 
 浏览器打开 <http://127.0.0.1:7870>。端口在 `config.py` 的 `WEB_PORT` 改。
@@ -191,7 +209,7 @@ python server.py
 
 ## 参与
 
-- 有 bug / 想要的功能：开 [Issue](https://github.com/your-name/manhua-comic-studio/issues)（请附日志与截图）。
+- 有 bug / 想要的功能：开 [Issue](https://github.com/xiaoheiyue/manhua-comic-studio/issues)（请附日志与截图）。
 - 想改代码：先看 [CONTRIBUTING.md](CONTRIBUTING.md)，`python selftest.py` 必须全绿。
 - 想聊天 / 内测：见 [社区说明](docs/社区/README.md)。
 

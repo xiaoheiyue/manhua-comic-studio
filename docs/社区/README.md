@@ -6,8 +6,8 @@
 
 | 入口 | 用来做什么 | 响应预期 |
 |---|---|---|
-| [Issues](https://github.com/your-name/manhua-comic-studio/issues) | 报 bug、提需求、认领任务 | 7 天内 |
-| [Discussions](https://github.com/your-name/manhua-comic-studio/discussions) | 用法讨论、作品展示、想法 | 随缘 |
+| [Issues](https://github.com/xiaoheiyue/manhua-comic-studio/issues) | 报 bug、提需求、认领任务 | 7 天内 |
+| [Discussions](https://github.com/xiaoheiyue/manhua-comic-studio/discussions) | 用法讨论、作品展示、想法 | 随缘 |
 | 内测群（QQ / 微信） | 快速问一句、看别人怎么用、约内测 | 工作日晚上 |
 
 > 群二维码 / 群号请由维护者在发布时补充；不要相信任何非本仓库给出的收费群。
