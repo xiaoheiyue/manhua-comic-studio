@@ -35,7 +35,9 @@ htmlcov/
 package-lock.json
 
 # ---- 运行期数据与产物（体积大、含用户小说原文与生成图）----
-/data/
+/data/*
+# 例外：骨架库是运行必需的素材（默认姿态/视图），随仓库分发
+!/data/pose_library/
 /outputs/
 /models/
 /screenshots/
