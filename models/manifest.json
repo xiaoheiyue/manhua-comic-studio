@@ -68,8 +68,11 @@
       "license": "MIT",
       "source": "https://github.com/ZhengPeng7/BiRefNet",
       "required": false,
-      "notes": "上传角色/产品图做表情包、海报时用。 国内镜像暂缺，可走 hf-mirror.com 或代理从 HF 下载。",
-      "download": null
+      "notes": "上传角色/产品图做表情包、海报时用。 国内镜像暂缺，可走 hf-mirror.com 或代理从 HF 下载。 走 hf-mirror.com（国内可直连）。",
+      "download": {
+        "mirror": "hf_mirror",
+        "url": "https://hf-mirror.com/Comfy-Org/BiRefNet/resolve/main/background_removal/birefnet.safetensors"
+      }
     },
     {
       "id": "qwen-image-2.1",
@@ -99,8 +102,11 @@
       "license": "Apache-2.0",
       "source": "https://huggingface.co/models?search=Z-Image-Turbo-Fun-Controlnet",
       "required": false,
-      "notes": "姿态图工作流使用；不装则姿态相关功能不可用。 国内镜像暂缺，可走 hf-mirror.com 或代理从 HF 下载。",
-      "download": null
+      "notes": "姿态图工作流使用；不装则姿态相关功能不可用。 国内镜像暂缺，可走 hf-mirror.com 或代理从 HF 下载。 走 hf-mirror.com（国内可直连）。",
+      "download": {
+        "mirror": "hf_mirror",
+        "url": "https://hf-mirror.com/alibaba-pai/Z-Image-Turbo-Fun-Controlnet-Union-2.1/resolve/main/Z-Image-Turbo-Fun-Controlnet-Union-2.1-lite-2601-8steps.safetensors"
+      }
     },
     {
       "id": "qwen-controlnet-union",
@@ -156,6 +162,6 @@
   ],
   "mirrors": {
     "modelscope": "https://modelscope.cn/models（国内直连，无需代理，已验证）",
-    "hf_mirror": "https://hf-mirror.com（HF 公共镜像，国内一般可直连）"
+    "hf_mirror": "https://hf-mirror.com（Hugging Face 公共镜像，国内实测可直连，约 1.8 MB/s）"
   }
 }

@@ -18,8 +18,9 @@ python scripts/download_models.py --file ae.safetensors
 - 默认走 **ModelScope 魔搭**（阿里，国内直连），已实测可用，速度约 10 MB/s；
 - 断点续传，下完自动比对字节数与 SHA256；
 - 下载到 `models/weights/`，按 ComfyUI 的子目录结构放好；
-- 9 个里有 7 个有镜像；`Z-Image ControlNet lite` 和 `birefnet` 暂未找到国内镜像，
-  可以从 [hf-mirror.com](https://hf-mirror.com) 或用代理从 HF 下载（见文末说明）。
+- 9 个里有 7 个在 **ModelScope 魔搭**（实测约 10 MB/s）；剩下 `Z-Image ControlNet lite`
+  和 `birefnet` 走 **hf-mirror.com**（国内可直连，实测 0.7–1.8 MB/s，
+  1.88 GB 那个大约要 45 分钟）。有代理的话，这两个直接从 HF 下会更快。
 
 ## 目录约定
 

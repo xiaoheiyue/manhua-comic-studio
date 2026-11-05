@@ -194,12 +194,13 @@ python server.py
 ## 模型与权重
 
 权重**不随仓库分发**（最小的也有 317 MB，全量 30.4 GB；GitHub 单文件上限 100 MB）。
-但**不需要翻墙**：仓库带了一个走 ModelScope 魔搭的下载脚本，国内直连、断点续传、自动校验 SHA256。
+但**不需要翻墙**：7 个走 ModelScope 魔搭（约 10 MB/s），2 个走 hf-mirror.com（国内可直连，慢一些）；
+脚本带断点续传与 SHA256 校验。
 
 ```powershell
 python scripts/download_models.py --list   # 看要下什么
 python scripts/download_models.py          # 只下必需的 3 个（约 11.3 GB）
-python scripts/download_models.py --all    # 下全部有镜像的 7 个
+python scripts/download_models.py --all    # 下全部 9 个（约 30.4 GB）
 ```
 
 | 路线 | 需要的权重 | 合计 |
