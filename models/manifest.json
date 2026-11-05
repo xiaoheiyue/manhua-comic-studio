@@ -17,7 +17,11 @@
       "license": "Apache-2.0",
       "source": "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo",
       "required": true,
-      "notes": "默认工作流 image_z_image_turbo_int8 使用；社区 int8 量化包，许可以原模型为准。"
+      "notes": "默认工作流 image_z_image_turbo_int8 使用；社区 int8 量化包，许可以原模型为准。",
+      "download": {
+        "mirror": "modelscope",
+        "url": "https://modelscope.cn/models/Comfy-Org/z_image_turbo/resolve/master/split_files/diffusion_models/z_image_turbo_int8_convrot.safetensors"
+      }
     },
     {
       "id": "qwen3-4b-encoder",
@@ -30,7 +34,11 @@
       "license": "Apache-2.0",
       "source": "https://huggingface.co/Qwen/Qwen3-4B",
       "required": true,
-      "notes": "Z-Image 工作流的 CLIPLoader 需要。"
+      "notes": "Z-Image 工作流的 CLIPLoader 需要。",
+      "download": {
+        "mirror": "modelscope",
+        "url": "https://modelscope.cn/models/Comfy-Org/z_image_turbo/resolve/master/split_files/text_encoders/qwen_3_4b_fp8_mixed.safetensors"
+      }
     },
     {
       "id": "z-image-vae",
@@ -43,7 +51,11 @@
       "license": "Apache-2.0",
       "source": "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo",
       "required": true,
-      "notes": ""
+      "notes": "",
+      "download": {
+        "mirror": "modelscope",
+        "url": "https://modelscope.cn/models/Comfy-Org/z_image_turbo/resolve/master/split_files/vae/ae.safetensors"
+      }
     },
     {
       "id": "birefnet",
@@ -56,7 +68,8 @@
       "license": "MIT",
       "source": "https://github.com/ZhengPeng7/BiRefNet",
       "required": false,
-      "notes": "上传角色/产品图做表情包、海报时用。"
+      "notes": "上传角色/产品图做表情包、海报时用。 国内镜像暂缺，可走 hf-mirror.com 或代理从 HF 下载。",
+      "download": null
     },
     {
       "id": "qwen-image-2.1",
@@ -69,7 +82,11 @@
       "license": "Apache-2.0",
       "source": "https://huggingface.co/Qwen/Qwen-Image",
       "required": false,
-      "notes": "25 格 / 参考图分镜走 Qwen 时使用；与 Z-Image 二选一即可。"
+      "notes": "25 格 / 参考图分镜走 Qwen 时使用；与 Z-Image 二选一即可。",
+      "download": {
+        "mirror": "modelscope",
+        "url": "https://modelscope.cn/models/Comfy-Org/Qwen-Image-2.1/resolve/master/diffusion_models/qwen_image_2.1_turbo_int8_convrot.safetensors"
+      }
     },
     {
       "id": "z-image-controlnet-union",
@@ -82,7 +99,8 @@
       "license": "Apache-2.0",
       "source": "https://huggingface.co/models?search=Z-Image-Turbo-Fun-Controlnet",
       "required": false,
-      "notes": "姿态图工作流使用；不装则姿态相关功能不可用。"
+      "notes": "姿态图工作流使用；不装则姿态相关功能不可用。 国内镜像暂缺，可走 hf-mirror.com 或代理从 HF 下载。",
+      "download": null
     },
     {
       "id": "qwen-controlnet-union",
@@ -95,7 +113,11 @@
       "license": "Apache-2.0",
       "source": "https://huggingface.co/models?search=fun-controlnet",
       "required": false,
-      "notes": "上传姿态图、锁构图时使用；社区 int8 量化。"
+      "notes": "上传姿态图、锁构图时使用；社区 int8 量化。",
+      "download": {
+        "mirror": "modelscope",
+        "url": "https://modelscope.cn/models/Comfy-Org/Qwen-Image-2.1/resolve/master/model_patches/qwen_image_2.1_fun_controlnet_union_int8_convrot.safetensors"
+      }
     },
     {
       "id": "qwen3vl-8b-encoder",
@@ -108,7 +130,11 @@
       "license": "Apache-2.0",
       "source": "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct",
       "required": false,
-      "notes": "只有走 Qwen 工作流时才需要；注意它不是画图模型。"
+      "notes": "只有走 Qwen 工作流时才需要；注意它不是画图模型。",
+      "download": {
+        "mirror": "modelscope",
+        "url": "https://modelscope.cn/models/Comfy-Org/Qwen-Image-2.1/resolve/master/text_encoders/qwen3vl_8b_w4a8.safetensors"
+      }
     },
     {
       "id": "qwen-image-vae",
@@ -121,7 +147,15 @@
       "license": "Apache-2.0",
       "source": "https://huggingface.co/Qwen/Qwen-Image",
       "required": false,
-      "notes": ""
+      "notes": "",
+      "download": {
+        "mirror": "modelscope",
+        "url": "https://modelscope.cn/models/Comfy-Org/Qwen-Image-2.1/resolve/master/vae/qwen_image_2.1_vae_bf16.safetensors"
+      }
     }
-  ]
+  ],
+  "mirrors": {
+    "modelscope": "https://modelscope.cn/models（国内直连，无需代理，已验证）",
+    "hf_mirror": "https://hf-mirror.com（HF 公共镜像，国内一般可直连）"
+  }
 }

@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 新增
+
+- `scripts/download_models.py`：走 ModelScope 魔搭国内直连下载 7 个权重，断点续传 + SHA256 校验，不需要代理
+- `models/manifest.json` 增加 `download` 字段（镜像地址）与 `mirrors` 说明
+- README 新增「不止漫画：创作工坊」展示（海报 / 表情包 / 信息图 / 插画 / IP / 电商图）
+- `docs/assets/showcase/`：创作工坊成品图与界面截图
+
 ## [0.1.0] - 2026-11-04
 
 首个公开版本。整理自本地自用版本，功能与内部版本一致，主要变化在"能不能被别人装起来"。

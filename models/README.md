@@ -2,8 +2,24 @@
 
 跑通一条完整条漫，**最少需要 3 个权重（约 11.3 GB）**；全部 9 个约 **30.4 GB**。
 
-权重本体**不随 Git 仓库分发**（GitHub 单文件上限 100 MB，总量也太大）。仓库里只放：
-说明、机器可读清单、SHA256 校验值，以及一个把权重链接进项目目录的脚本。
+权重本体**不随 Git 仓库分发**：GitHub 单文件上限 100 MB，这里最小的权重也有 317 MB，
+全量 30.4 GB 既推不上去，也会让 `git clone` 变成几十 GB。仓库里放的是：
+说明、机器可读清单、SHA256，以及**国内直连的下载脚本**（不需要翻墙）。
+
+## 国内直连下载（推荐，不用代理）
+
+```powershell
+python scripts/download_models.py --list    # 先看要下什么、多大
+python scripts/download_models.py           # 只下必需的 3 个（约 11.3 GB）
+python scripts/download_models.py --all     # 下全部有镜像的 7 个
+python scripts/download_models.py --file ae.safetensors
+```
+
+- 默认走 **ModelScope 魔搭**（阿里，国内直连），已实测可用，速度约 10 MB/s；
+- 断点续传，下完自动比对字节数与 SHA256；
+- 下载到 `models/weights/`，按 ComfyUI 的子目录结构放好；
+- 9 个里有 7 个有镜像；`Z-Image ControlNet lite` 和 `birefnet` 暂未找到国内镜像，
+  可以从 [hf-mirror.com](https://hf-mirror.com) 或用代理从 HF 下载（见文末说明）。
 
 ## 目录约定
 

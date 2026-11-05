@@ -88,13 +88,45 @@
 
 ---
 
+## 不止漫画：创作工坊
+
+同一套风格库与工作流，切到「非漫画创作」可以做 7 类图：
+
+**海报 · 社媒图文 · 信息图/长图 · 表情包（3×3 总表）· 插画/封面 · IP/头像 · 电商图**
+
+<p align="center">
+  <img src="docs/assets/showcase/studio-poster.webp" width="28%">
+  <img src="docs/assets/showcase/studio-emoji.webp" width="28%">
+  <img src="docs/assets/showcase/studio-infographic.webp" width="28%">
+</p>
+<p align="center"><sub>秋分海报（FE 风格 + 主题色）　·　3×3 表情包总表（可单独导出透明底 PNG）　·　信息图长图</sub></p>
+
+<p align="center">
+  <img src="docs/assets/showcase/studio-illustration.webp" width="23%">
+  <img src="docs/assets/showcase/studio-ip.webp" width="23%">
+  <img src="docs/assets/showcase/studio-ecommerce.webp" width="23%">
+  <img src="docs/assets/showcase/studio-social.webp" width="23%">
+</p>
+<p align="center"><sub>插画 / 封面　·　IP 头像与三视图　·　电商图　·　社媒图文</sub></p>
+
+和漫画模式不同的几处处理：
+
+- **中文标题由程序叠加**，不让模型直接写，避免错字与重复；
+- **信息图的节点与关系由程序排版**，模型只生成低对比纸感底图，不赌它画对结构；
+- 表情包直接出 3×3 总表，同时可导出单贴透明 PNG；
+- 参考图会先去背景、保留主体，再按选定画风重画，不是简单贴图。
+
+![创作工坊界面](docs/assets/showcase/ui-studio-gallery.webp)
+
+---
+
 ## 快速开始
 
 ### 0. 你需要
 
 - [uv](https://docs.astral.sh/uv/)（用它装 Python 3.12 和依赖；下面一条命令即可安装，不用预装 Python）
 - 一块 8GB 以上显存的 GPU（int8 量化，1088×1216 约 20 秒/张）
-- 本地 [ComfyUI](https://github.com/comfyanonymous/ComfyUI) + 模型权重（**不随仓库分发**，见 [模型与依赖清单](docs/模型与依赖清单.md)）
+- 本地 [ComfyUI](https://github.com/comfyanonymous/ComfyUI) + 模型权重（**不随仓库分发**，用 `scripts/download_models.py` 国内直连下载，见[模型与权重](#模型与权重)）
 - 一个 DeepSeek API Key（或任何 OpenAI 兼容端点）
 
 > **仓库里没有什么**：`env/`、`node_modules/`、模型权重、`data/`、`outputs/` 都不在仓库里。
@@ -161,8 +193,14 @@ python server.py
 
 ## 模型与权重
 
-权重**不随仓库分发**（单文件最大 6.76 GB，全量 30.4 GB）。本机的 `models/weights/` 里是指向
-ComfyUI 安装目录的硬链接：项目里看得到、用得着，不额外占磁盘。
+权重**不随仓库分发**（最小的也有 317 MB，全量 30.4 GB；GitHub 单文件上限 100 MB）。
+但**不需要翻墙**：仓库带了一个走 ModelScope 魔搭的下载脚本，国内直连、断点续传、自动校验 SHA256。
+
+```powershell
+python scripts/download_models.py --list   # 看要下什么
+python scripts/download_models.py          # 只下必需的 3 个（约 11.3 GB）
+python scripts/download_models.py --all    # 下全部有镜像的 7 个
+```
 
 | 路线 | 需要的权重 | 合计 |
 |---|---|---|
@@ -172,7 +210,7 @@ ComfyUI 安装目录的硬链接：项目里看得到、用得着，不额外占
 逐文件的用途、放置目录、下载来源、许可证与 SHA256：[models/README.md](models/README.md)；
 机器可读清单：[models/manifest.json](models/manifest.json)。
 
-从已有的 ComfyUI 安装把权重链接进来（不重复下载）：
+如果本机已经装过 ComfyUI，也可以直接链接过来（不重复下载）：
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\link_models.ps1 -ComfyModels "D:\ComfyUI\models"
