@@ -39,7 +39,7 @@ package-lock.json
 # 例外：骨架库是运行必需的素材（默认姿态/视图），随仓库分发
 !/data/pose_library/
 /outputs/
-/models/
+/models/weights/
 /screenshots/
 *.log
 *.tmp

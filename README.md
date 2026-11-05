@@ -51,6 +51,43 @@
 
 ---
 
+## 成品展示：一次完整运行
+
+下面全部来自同一个工程（`测试示例`），没换素材、没手动修图：
+
+| 输入 | 角色 | 分镜 | 分页 | 条漫 | 导出 |
+|---|---|---|---|---|---|
+| 1,053 字短篇 | 3 个（每人 5 张视图） | 25 格 | 7 页 | 2 条长图 | 条漫 + 24.4 MB PDF |
+
+<p align="center">
+  <img src="docs/assets/showcase/pages-grid.webp" alt="7 页成品：分格、气泡、页脚话号" width="100%">
+</p>
+<p align="center"><sub>7 页成品：自动编页选版式、气泡避开人脸、页脚带话号</sub></p>
+
+<p align="center">
+  <img src="docs/assets/showcase/page-01.webp" alt="单页成品" width="42%">
+  <img src="docs/assets/showcase/characters.webp" alt="三个角色的主视图" width="56%">
+</p>
+<p align="center"><sub>左：单页细节　右：三视图体系里的主视图（另有侧面 / 背面 / 面部特写 / 姿态图）</sub></p>
+
+<p align="center">
+  <img src="docs/assets/showcase/webtoon-01.webp" alt="条漫长图" width="300">
+</p>
+<p align="center"><sub>同一话自动拼出的条漫长图（1088 × 6562）</sub></p>
+
+<p align="center">
+  <img src="docs/assets/showcase/ui-grid25.webp" alt="25 格分镜" width="49%">
+  <img src="docs/assets/showcase/ui-output.webp" alt="出图与打包" width="49%">
+</p>
+<p align="center">
+  <img src="docs/assets/showcase/ui-projects.webp" alt="工程与产物" width="49%">
+  <img src="docs/assets/showcase/ui-characters.webp" alt="角色与参考资产" width="49%">
+</p>
+
+> 演示文本是一篇 1,053 字的短篇；换成你的小说，只要在第 1 步上传即可。
+
+---
+
 ## 快速开始
 
 ### 0. 你需要
@@ -122,6 +159,29 @@ python server.py
 
 ---
 
+## 模型与权重
+
+权重**不随仓库分发**（单文件最大 6.76 GB，全量 30.4 GB）。本机的 `models/weights/` 里是指向
+ComfyUI 安装目录的硬链接：项目里看得到、用得着，不额外占磁盘。
+
+| 路线 | 需要的权重 | 合计 |
+|---|---|---|
+| 最小可跑（Z-Image 文生图条漫） | 主模型 + 文本编码器 + VAE | **11.3 GB** |
+| 全量（加 Qwen 路线 / ControlNet / 去背景） | 9 个文件 | 30.4 GB |
+
+逐文件的用途、放置目录、下载来源、许可证与 SHA256：[models/README.md](models/README.md)；
+机器可读清单：[models/manifest.json](models/manifest.json)。
+
+从已有的 ComfyUI 安装把权重链接进来（不重复下载）：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\link_models.ps1 -ComfyModels "D:\ComfyUI\models"
+```
+
+放好后打开界面「设置 → 图像工作流 → 检查工作流」，会逐个核对文件名与节点。
+
+---
+
 ## 配置
 
 所有可调项集中在 [`config.py`](config.py)，也支持同名环境变量覆盖。常用几项：
@@ -162,8 +222,9 @@ python server.py
 ├── rules/                 # 给人看 + 给程序读的规则库
 ├── prompts/               # 提示词模板与回溯
 ├── comfy_workflows/       # ComfyUI 工作流 JSON（Z-Image / Qwen）
-├── docs/                  # 全部文档
-├── scripts/               # 安装 / 拉取风格库
+├── models/                # 模型清单与校验值；weights/ 是本地硬链接（gitignore）
+├── docs/                  # 全部文档（assets/showcase 为 README 成品图）
+├── scripts/               # 安装 / 拉取风格库 / 链接模型
 └── data/  outputs/        # 运行期数据与产物（已 gitignore）
 ```
 
@@ -173,6 +234,7 @@ python server.py
 
 | 文档 | 内容 |
 |---|---|
+| [模型与权重](models/README.md) | 9 个权重的用途、大小、来源、许可、SHA256 |
 | [模型与依赖清单](docs/模型与依赖清单.md) | 需要哪些模型、放哪、从哪下、许可 |
 | [项目现状与默认策略](docs/项目现状与默认策略.md) | 当前默认行为与能力边界 |
 | [条漫叙事与分镜规则](docs/条漫叙事与分镜规则.md) | 画布、转场配比、gutter、悬念位置（R1–R30） |
