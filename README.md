@@ -8,9 +8,13 @@
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![CI](https://github.com/xiaoheiyue/manhua-comic-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaoheiyue/manhua-comic-studio/actions/workflows/ci.yml)
+[![Gitee](https://img.shields.io/badge/Gitee-dotmukuro%2Fmanhua--comic--studio-c71d23.svg)](https://gitee.com/dotmukuro/manhua-comic-studio)
 [![Python](https://img.shields.io/badge/python-3.12-blue.svg)](requirements.txt)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)](#快速开始)
 [![Local](https://img.shields.io/badge/inference-100%25%20local-green.svg)](#为什么是本地)
+
+> **国内访问**：GitHub 打不开时用 Gitee 镜像 → <https://gitee.com/dotmukuro/manhua-comic-studio>
+> （两个仓库同一份代码，`git remote` 各自推送）
 
 </div>
 
