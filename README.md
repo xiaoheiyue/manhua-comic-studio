@@ -319,4 +319,6 @@ powershell -ExecutionPolicy Bypass -File scripts\link_models.ps1 -ComfyModels "D
 - 想改代码：先看 [CONTRIBUTING.md](CONTRIBUTING.md)，`python selftest.py` 必须全绿。
 - 想聊天 / 内测：见 [社区说明](docs/社区/README.md)。
 
+> 仓库同时维护 GitHub 与 Gitee 两个镜像，改完用 `scripts/push_all.ps1`（或 `.sh`）一次推两边。
+
 如果这个项目帮你省下了请画师的钱，点个 ⭐ 就是最好的支持。
